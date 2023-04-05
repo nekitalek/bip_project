@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Главная</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=<d6cff87d-4fd5-40dc-a70d-af09ffffcc73>" type="text/javascript"></script>
+    <script src="map.js"></script>
+    <script src="icon_customImage.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="main_page.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+<nav class="bg-white border-gray-200 dark:bg-gray-900">
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+      <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">BIP PROJECT</span>
+  <div class="flex items-center md:order-2">
+      <button type="button" class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
+        <span class="sr-only">Open user menu</span>
+        <img class="w-8 h-8 rounded-full" src="profile_pic.jpg" alt="user photo">
+      </button>
+      <!-- Dropdown menu -->
+      <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
+        <div class="px-4 py-3">
+          <span class="block text-sm text-gray-900 dark:text-white">Антон Антонов</span>
+          <span class="block text-sm  text-gray-500 truncate dark:text-gray-400">ibksstudent@mail.ru</span>
+        </div>
+        <ul class="py-2" aria-labelledby="user-menu-button">
+          <li>
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Настройки</a>
+          </li>
+          <li>
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">История</a>
+          </li>
+          <li>
+            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Выйти</a>
+          </li>
+        </ul>
+      </div>
+  </div>
+  </div>
+</nav>
+    
+    <div id="map"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
+</body>
+</html>
+
