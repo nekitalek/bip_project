@@ -3,7 +3,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <title>Login form</title>
+    <link rel="stylesheet" href="main_page.css">
     <script src="https://cdn.tailwindcss.com"></script>
+
 </head>
 <body>
     <section class="bg-gray-50 dark:bg-gray-900">
@@ -44,5 +46,76 @@
             </div>
         </div>
       </section>
+
+
+        <!-- Кнопка, при нажатии на которую появится pop-up окно -->
+        <button class="absolute top-5 px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50" 
+                onclick="openModal()">Открыть окно</button>
+
+<!-- Модальное окно -->
+<div class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center hidden" id="myModal">
+    <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
+    <div class="modal-container bg-white dark:bg-gray-900 w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+        <!-- Заголовок окна -->
+        <div class="modal-header p-3">
+            <h3 class="modal-title text-lg font-medium text-gray-700 dark:text-gray-400 text-center">Введите данные</h3>
+        </div>
+        <!-- Основное содержимое окна -->
+        <div class="modal-content py-4 text-left px-6">
+            <form>
+                <!-- Поле ввода из 6 ячеек -->
+                <div class="mb-4">
+                    <label class="block text-gray-700 dark:text-gray-300 font-bold mb-2" for="input-field">Введите код из письма:</label>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline border-red-500 dark:border-red-500" id="input-field" type="text" placeholder="Введите шестизначный код">
+                </div>
+                <!-- Кнопки -->
+                <div class="flex justify-end pt-2">
+                    <button class="px-4 bg-transparent p-3 rounded-lg text-indigo-500 dark:text-indigo-400 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-indigo-400 dark:hover:text-white mr-2" onclick="closeModal()">Отмена</button>
+                    <button class="modal-close px-4 bg-indigo-500 dark:bg-indigo-400 p-3 rounded-lg text-white hover:bg-indigo-400 dark:hover:bg-white" type="button">Отправить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+        <script>
+        function openModal() {
+        document.getElementById("myModal").classList.remove("hidden");
+        }
+
+        function closeModal() {
+        document.getElementById("myModal").classList.add("hidden");
+        }
+        </script>
+
+
+
+
+
+
+<!-- Modal toggle
+<button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+    Toggle modal
+  </button>
+  
+  Main modal
+  <div id="authentication-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
+      <div class="relative w-full h-full max-w-md md:h-auto">
+          Modal content 
+          <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+              <div class="px-6 py-6 lg:px-8">
+                  <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Дополнительная аутентификация</h3>
+                  <form class="space-y-6" action="#">
+                      <div>
+                          <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Введите код из письма</label>
+                          <input type="email" name="text" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>  -->
+  
 </body>
 
