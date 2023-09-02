@@ -1,0 +1,17 @@
+https:
+    port: "8080"
+    cert: "cert.pem"
+    key: "key.pem"
+
+db:
+    username: "postgres"
+    host: "localhost"
+    port: "5432"
+    dbname: "postgres"
+    sslmode: "require"
+
+
+template:
+    EmailConfirmation: "htmlTemplate//template.html"
+
+

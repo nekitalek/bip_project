@@ -1,0 +1,48 @@
+basePath: /
+host: localhost:8080
+info:
+  contact:
+    email: kolya@example.com
+    name: API Support
+  description: This is a sample serice for managing orders
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: BIP API
+  version: "1.0"
+paths:
+  /auth/sign-in/factor:
+    post:
+      consumes:
+      - application/json
+      description: Вывод стандартной страницы
+      produces:
+      - application/json
+      responses: {}
+      summary: Вывод стандартной страницы
+      tags:
+      - signInSecondFactor
+  /auth/sign-in/pass:
+    post:
+      consumes:
+      - application/json
+      description: Вывод стандартной страницы
+      produces:
+      - application/json
+      responses: {}
+      summary: Вывод стандартной страницы
+      tags:
+      - signInPass
+  /auth/sign-up:
+    post:
+      consumes:
+      - application/json
+      description: Вывод стандартной страницы
+      produces:
+      - application/json
+      responses: {}
+      summary: Вывод стандартной страницы
+      tags:
+      - signUp
+swagger: "2.0"
