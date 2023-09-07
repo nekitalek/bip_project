@@ -2,13 +2,19 @@ package BIP_project
 
 import "time"
 
-type User struct {
+type User_auth struct {
 	User_id            int    `json:"user_id" db:"user_id"`
 	Login              string `json:"login" binding:"required"`
 	Username           string `json:"username" binding:"required"`
 	Password           string `json:"password" binding:"required"`
 	Password_hash      string
 	Email_confirmation bool
+}
+
+type User_data struct {
+	User_id  int    `json:"user_id" db:"user_id"`
+	Login    string `json:"login" binding:"required"`
+	Username string `json:"username" binding:"required"`
 }
 
 type Login_method string
@@ -57,15 +63,15 @@ type Auth_data struct {
 //____________________________________________________________________________________________________________________________________
 
 type Event_items struct {
-	Event_items_id int       `json:"event_items_id" form:"event_items_id"`
-	Admin          int       `json:"admin" form:"admin"`
-	Participant    []User    `json:"participant" form:"participant"`
-	Time_start     time.Time `json:"time_start" form:"time_start"`
-	Time_end       time.Time `json:"time_end" form:"time_end"`
-	Place          string    `json:"place" form:"place"`
-	Game           string    `json:"game" form:"game"`
-	Description    string    `json:"description" form:"description"`
-	Public         bool      `json:"public" form:"public"`
+	Event_items_id int         `json:"event_items_id" form:"event_items_id"`
+	Admin          int         `json:"admin" form:"admin"`
+	Participant    []User_data `json:"participant" form:"participant"`
+	Time_start     time.Time   `json:"time_start" form:"time_start"`
+	Time_end       time.Time   `json:"time_end" form:"time_end"`
+	Place          string      `json:"place" form:"place"`
+	Game           string      `json:"game" form:"game"`
+	Description    string      `json:"description" form:"description"`
+	Public         bool        `json:"public" form:"public"`
 }
 
 type Event_items_input struct {

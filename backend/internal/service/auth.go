@@ -104,7 +104,7 @@ func (s *AuthService) SaveToken(token_JWT string, e_conf BIP_project.Email_confi
 	return err
 }
 
-func (s *AuthService) CreateUser(user BIP_project.User) (int, int, error) {
+func (s *AuthService) CreateUser(user BIP_project.User_auth) (int, int, error) {
 	//если в бд уже есть почта то вернёт ошибку
 	user.Password_hash = generatePasswordHash(user.Password)
 	user.Email_confirmation = false
@@ -175,9 +175,9 @@ func (s *AuthService) CheckLoginAttempt(login string, login_method BIP_project.L
 	return err
 }
 
-func (s *AuthService) Authenticate(login, password string) (BIP_project.User, error) {
+func (s *AuthService) Authenticate(login, password string) (BIP_project.User_auth, error) {
 
-	var user BIP_project.User
+	var user BIP_project.User_auth
 	//проверить данные о попытках входа
 	err := s.CheckLoginAttempt(login, BIP_project.Password)
 	if err != nil {
