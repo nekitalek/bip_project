@@ -15,7 +15,7 @@ func NewAuthPostgres(db *sqlx.DB) *AuthPostgres {
 	return &AuthPostgres{db: db}
 }
 
-func (r *AuthPostgres) CreateUser(user BIP_project.User) (int, error) {
+func (r *AuthPostgres) CreateUser(user BIP_project.User_auth) (int, error) {
 	var id int
 	query := fmt.Sprintf("INSERT INTO %s (login, username, password_hash,email_confirmation) values ($1, $2, $3,$4) RETURNING user_id", usersTable)
 
@@ -26,7 +26,7 @@ func (r *AuthPostgres) CreateUser(user BIP_project.User) (int, error) {
 
 	return id, nil
 }
-func (r *AuthPostgres) UpdateDataUser(user BIP_project.User) error {
+func (r *AuthPostgres) UpdateDataUser(user BIP_project.User_auth) error {
 
 	query := fmt.Sprintf("UPDATE %s SET login = $2,password_hash = $3, username = $4, email_confirmation = $5, WHERE user_id=$1", usersTable)
 
@@ -42,21 +42,22 @@ func (r *AuthPostgres) UpdateUsersEmailConfirmation(user_id int, email_confirmat
 	return nil
 }
 
-func (r *AuthPostgres) GetUserByLogin(login string) (BIP_project.User, error) {
-	var user BIP_project.User
+func (r *AuthPostgres) GetUserByLogin(login string) (BIP_project.User_auth, error) {
+	var user BIP_project.User_auth
 
 	query := fmt.Sprintf("SELECT * FROM %s WHERE login=$1", usersTable)
 	err := r.db.Get(&user, query, login)
 	return user, err
 }
-func (r *AuthPostgres) GetUserById(id int) (BIP_project.User, error) {
-	var user BIP_project.User
+func (r *AuthPostgres) GetUserById(id int) (BIP_project.User_auth, error) {
+	var user BIP_project.User_auth
 
 	query := fmt.Sprintf("SELECT * FROM %s WHERE user_id=$1", usersTable)
 	err := r.db.Get(&user, query, id)
 
 	return user, err
 }
+
 func (r *AuthPostgres) AddDataAuth(data BIP_project.Auth_data) (int, error) {
 	var id int
 	query := fmt.Sprintf("INSERT INTO %s (token,user_id,time_end,device) values ($1, $2, $3, $4) RETURNING auth_data_id", authDataTable)

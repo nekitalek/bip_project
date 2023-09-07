@@ -6,10 +6,10 @@ import (
 )
 
 type Authorization interface {
-	CreateUser(user BIP_project.User) (int, error)
-	UpdateDataUser(user BIP_project.User) error
-	GetUserByLogin(login string) (BIP_project.User, error)
-	GetUserById(id int) (BIP_project.User, error)
+	CreateUser(user BIP_project.User_auth) (int, error)
+	UpdateDataUser(user BIP_project.User_auth) error
+	GetUserByLogin(login string) (BIP_project.User_auth, error)
+	GetUserById(id int) (BIP_project.User_auth, error)
 	AddDataAuth(data BIP_project.Auth_data) (int, error)
 	GetDataAuth(id int) (BIP_project.Auth_data, error)
 	UpdateDataAuth(data BIP_project.Auth_data) error
@@ -42,6 +42,7 @@ type Invitation interface {
 	UpdateInvitation(user_id, event_invitations_id int, input *BIP_project.Event_invitations_input) error
 	DeleteInvitation(user_id int, input *BIP_project.Event_invitations_input) error
 }
+
 type Repository struct {
 	Authorization
 	Invitation

@@ -25,7 +25,7 @@ func (h *Handler) GetCSRF(c *gin.Context) {
 // @Router /auth/sign-up [post]
 func (h *Handler) signUp(c *gin.Context) {
 
-	var input BIP_project.User
+	var input BIP_project.User_auth
 
 	if err := c.BindJSON(&input); err != nil {
 		newErrorResponse(c, http.StatusBadRequest, err.Error())

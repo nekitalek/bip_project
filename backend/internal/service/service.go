@@ -6,14 +6,14 @@ import (
 )
 
 type Authorization interface {
-	CreateUser(user BIP_project.User) (int, int, error)
+	CreateUser(user BIP_project.User_auth) (int, int, error)
 	SignUpSecondFactor(e_conf BIP_project.Email_confirmation) error
 
 	// SendVerificationCodeToEmail(user_id int, login string, assignment BIP_project.Assignment) (int, error)
 	// SendVerificationCodeToEmailByLogin(login string, assignment BIP_project.Assignment) (int, error)
 	// SendVerificationCodeToEmailByUserId(user_id int, assignment BIP_project.Assignment) (int, error)
 	CheckLoginAttempt(login string, login_method BIP_project.Login_method) error
-	Authenticate(login, password string) (BIP_project.User, error)
+	Authenticate(login, password string) (BIP_project.User_auth, error)
 	Send2FAEmail(user_id int, login string, assignment BIP_project.Assignment) (int, int, error)
 
 	AuthenticateAndSend2FAEmail(login, password string, assignment BIP_project.Assignment) (int, int, error)
@@ -55,10 +55,16 @@ type Invitation interface {
 	UpdateInvitation(user_id, event_invitations_id int, input *BIP_project.Event_invitations_input) error
 	DeleteInvitation(user_id int, input *BIP_project.Event_invitations_input) error
 }
+
+type User interface {
+	GetUser(user_id int) (BIP_project.User_data, error)
+}
+
 type Service struct {
 	Authorization
 	Invitation
 	EventItem
+	User
 }
 
 func NewService(repos *repository.Repository) *Service {
@@ -66,5 +72,6 @@ func NewService(repos *repository.Repository) *Service {
 		Authorization: NewAuthService(repos.Authorization),
 		Invitation:    NewInvitationService(repos.Invitation),
 		EventItem:     NewEventItemService(repos.EventItem),
+		User:          NewUserService(repos.Authorization),
 	}
 }
