@@ -1,48 +1,543 @@
 basePath: /
+definitions:
+  BIP_project.Assignment:
+    enum:
+    - Registration
+    - SecFactor
+    - ChangeEmail
+    - ChangePassword
+    type: string
+    x-enum-varnames:
+    - Registration
+    - SecFactor
+    - ChangeEmail
+    - ChangePassword
+  BIP_project.Email_confirmation:
+    properties:
+      assignment:
+        $ref: '#/definitions/BIP_project.Assignment'
+      code:
+        type: integer
+      device:
+        description: binding:"required"`
+        type: string
+      email:
+        type: string
+      email_confirmation_id:
+        type: integer
+      time_end:
+        type: string
+      user_id:
+        description: binding:"required"`
+        type: integer
+    type: object
+  BIP_project.User_auth:
+    properties:
+      email_confirmation:
+        type: boolean
+      login:
+        type: string
+      password:
+        type: string
+      password_hash:
+        type: string
+      user_id:
+        type: integer
+      username:
+        type: string
+    required:
+    - login
+    - password
+    - username
+    type: object
+  handler.ChangeLoginStruct:
+    properties:
+      e_conf:
+        $ref: '#/definitions/BIP_project.Email_confirmation'
+      new_login:
+        type: string
+    required:
+    - new_login
+    type: object
+  handler.ChangePassStruct:
+    properties:
+      e_conf:
+        $ref: '#/definitions/BIP_project.Email_confirmation'
+      new_password:
+        type: string
+    type: object
+  handler.LoginAndPass:
+    properties:
+      Login:
+        type: string
+      password:
+        type: string
+    required:
+    - Login
+    - password
+    type: object
+  handler.errorResponse:
+    properties:
+      message:
+        type: string
+    type: object
 host: localhost:8080
 info:
   contact:
     email: kolya@example.com
-    name: API Support
   description: This is a sample serice for managing orders
-  license:
-    name: Apache 2.0
-    url: http://www.apache.org/licenses/LICENSE-2.0.html
-  termsOfService: http://swagger.io/terms/
   title: BIP API
   version: "1.0"
 paths:
-  /auth/sign-in/factor:
+  /auth/ChangeLoginFirstFactor:
     post:
       consumes:
       - application/json
-      description: Вывод стандартной страницы
+      description: Проверка первого фактора при изменении логина
+      parameters:
+      - description: account info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/handler.LoginAndPass'
       produces:
       - application/json
-      responses: {}
-      summary: Вывод стандартной страницы
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      summary: ChangeLoginFirstFactor
       tags:
-      - signInSecondFactor
-  /auth/sign-in/pass:
+      - auth
+  /auth/ChangeLoginSecondFactor:
     post:
       consumes:
       - application/json
-      description: Вывод стандартной страницы
+      description: Проверка второго фактора при изменении логина
+      parameters:
+      - description: account info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/handler.ChangeLoginStruct'
       produces:
       - application/json
-      responses: {}
-      summary: Вывод стандартной страницы
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      summary: ChangeLoginSecondFactor
       tags:
-      - signInPass
-  /auth/sign-up:
+      - auth
+  /auth/ChangePassFirstFactor:
     post:
       consumes:
       - application/json
-      description: Вывод стандартной страницы
+      description: Проверка первого фактора при изменении пароля
+      parameters:
+      - description: account info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/handler.LoginAndPass'
       produces:
       - application/json
-      responses: {}
-      summary: Вывод стандартной страницы
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      summary: ChangePassFirstFactor
       tags:
-      - signUp
+      - auth
+  /auth/ChangePassSecondFactor:
+    post:
+      consumes:
+      - application/json
+      description: Проверка и изменение второго фактора при измеинении пароля
+      parameters:
+      - description: account info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/handler.ChangePassStruct'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      summary: ChangePassSecondFactor
+      tags:
+      - auth
+  /auth/GetCSRF:
+    get:
+      consumes:
+      - application/json
+      description: Получение CSRF токена
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+      summary: GetCSRF
+      tags:
+      - auth
+  /auth/ResendCode:
+    post:
+      consumes:
+      - application/json
+      description: Повторная отправка кода второго фактора на почту
+      parameters:
+      - description: account info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/BIP_project.Email_confirmation'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      summary: ResendCode
+      tags:
+      - auth
+  /auth/VerificationNewEmail:
+    post:
+      consumes:
+      - application/json
+      description: Подтверждение новой почты
+      parameters:
+      - description: account info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/BIP_project.Email_confirmation'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      summary: VerificationNewEmail
+      tags:
+      - auth
+  /auth/signInPass:
+    post:
+      consumes:
+      - application/json
+      description: Страница входа пользвателя
+      parameters:
+      - description: account info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/handler.LoginAndPass'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      summary: signInPass
+      tags:
+      - auth
+  /auth/signInSecondFactor:
+    post:
+      consumes:
+      - application/json
+      description: Страница вывода второго фактора при входе
+      parameters:
+      - description: account info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/BIP_project.Email_confirmation'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      summary: signInSecondFactor
+      tags:
+      - auth
+  /auth/signUp:
+    post:
+      consumes:
+      - application/json
+      description: Вывод страницы регистрации
+      parameters:
+      - description: account info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/BIP_project.User_auth'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      summary: signUp
+      tags:
+      - auth
+  /auth/signUpSecondFactor:
+    post:
+      consumes:
+      - application/json
+      description: Второй фактор при регистрации
+      parameters:
+      - description: account info
+        in: body
+        name: input
+        required: true
+        schema:
+          $ref: '#/definitions/BIP_project.Email_confirmation'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      summary: signUpSecondFactor
+      tags:
+      - auth
+  /event_item/CreateEvent:
+    post:
+      consumes:
+      - application/json
+      description: Создание нового события
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      summary: CreateEvent
+      tags:
+      - event
+  /event_item/DeleteEvent:
+    delete:
+      consumes:
+      - application/json
+      description: Удаление события
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      summary: DeleteEvent
+      tags:
+      - event
+  /event_item/GetEvents:
+    get:
+      consumes:
+      - application/json
+      description: Получение нового события
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      summary: GetEvents
+      tags:
+      - event
+  /event_item/UpdateEvent:
+    patch:
+      consumes:
+      - application/json
+      description: Обновление события
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      summary: UpdateEvent
+      tags:
+      - event
+  /invitation/CreateInvitation:
+    post:
+      consumes:
+      - application/json
+      description: Создание приглашения
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      summary: CreateInvitation
+      tags:
+      - invite
+  /invitation/DeleteInvitation:
+    delete:
+      consumes:
+      - application/json
+      description: Удаление приглашения
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      summary: DeleteInvitation
+      tags:
+      - invite
+  /invitation/GetInvitation:
+    get:
+      consumes:
+      - application/json
+      description: Получение приглашения
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      summary: GetInvitation
+      tags:
+      - invite
+  /invitation/UpdateInvitation:
+    patch:
+      consumes:
+      - application/json
+      description: Обновление статуса приглашения
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      summary: UpdateInvitation
+      tags:
+      - invite
+  /user/GetUser:
+    get:
+      consumes:
+      - application/json
+      description: Получение информации о пользователе
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.errorResponse'
+      summary: GetUser
+      tags:
+      - user
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
 swagger: "2.0"
