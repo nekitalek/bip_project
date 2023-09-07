@@ -17,6 +17,11 @@ type User_data struct {
 	Username string `json:"username" binding:"required"`
 }
 
+type User_data_Participant struct {
+	User_id  int    `json:"user_id" db:"user_id"`
+	Username string `json:"username" binding:"required"`
+}
+
 type Login_method string
 
 const (
@@ -63,15 +68,15 @@ type Auth_data struct {
 //____________________________________________________________________________________________________________________________________
 
 type Event_items struct {
-	Event_items_id int         `json:"event_items_id" form:"event_items_id"`
-	Admin          int         `json:"admin" form:"admin"`
-	Participant    []User_data `json:"participant" form:"participant"`
-	Time_start     time.Time   `json:"time_start" form:"time_start"`
-	Time_end       time.Time   `json:"time_end" form:"time_end"`
-	Place          string      `json:"place" form:"place"`
-	Game           string      `json:"game" form:"game"`
-	Description    string      `json:"description" form:"description"`
-	Public         bool        `json:"public" form:"public"`
+	Event_items_id int                     `json:"event_items_id" form:"event_items_id"`
+	Admin          int                     `json:"admin" form:"admin"`
+	Participant    []User_data_Participant `json:"participant" form:"participant"`
+	Time_start     time.Time               `json:"time_start" form:"time_start"`
+	Time_end       time.Time               `json:"time_end" form:"time_end"`
+	Place          string                  `json:"place" form:"place"`
+	Game           string                  `json:"game" form:"game"`
+	Description    string                  `json:"description" form:"description"`
+	Public         bool                    `json:"public" form:"public"`
 }
 
 type Event_items_input struct {
