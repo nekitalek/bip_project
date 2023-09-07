@@ -9,6 +9,15 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// GetCSRF godoc
+//
+//	@Summary		GetCSRF
+//	@Description	Получение CSRF токена
+//	@Tags			auth
+//	@Accept			json
+//	@Produce		json
+//	@Router			/auth/GetCSRF [get]
+//	 @Success 200 {integer} integer 1
 func (h *Handler) GetCSRF(c *gin.Context) {
 	token_CSRF := csrf.Token(c.Request)
 	c.JSON(http.StatusOK, map[string]interface{}{
@@ -17,12 +26,18 @@ func (h *Handler) GetCSRF(c *gin.Context) {
 }
 
 // signUp godoc
-// @Summary Вывод стандартной страницы
-// @Description Вывод стандартной страницы
-// @Tags signUp
-// @Accept  json
-// @Produce  json
-// @Router /auth/sign-up [post]
+//
+//	@Summary		signUp
+//	@Description	Вывод страницы регистрации
+//	@Tags			auth
+//	@Accept			json
+//	@Produce		json
+//
+// @Param input body BIP_project.User_auth true "account info"
+//
+//		@Router			/auth/signUp [post]
+//	 @Success 200 {integer} integer 1
+//	 @Failure 400 object} errorResponse
 func (h *Handler) signUp(c *gin.Context) {
 
 	var input BIP_project.User_auth
@@ -44,6 +59,19 @@ func (h *Handler) signUp(c *gin.Context) {
 	})
 }
 
+// signUpSecondFactor godoc
+//
+//	@Summary		signUpSecondFactor
+//	@Description	Второй фактор при регистрации
+//	@Tags			auth
+//	@Accept			json
+//	@Produce		json
+//
+// @Param input body BIP_project.Email_confirmation true "account info"
+//
+//	@Router			/auth/signUpSecondFactor [post]
+//	 @Success 200 {integer} integer 1
+//	 @Failure 400 object} errorResponse
 func (h *Handler) signUpSecondFactor(c *gin.Context) {
 	var input BIP_project.Email_confirmation
 	if err := c.BindJSON(&input); err != nil {
@@ -68,12 +96,18 @@ type LoginAndPass struct {
 }
 
 // signInPass godoc
-// @Summary Вывод стандартной страницы
-// @Description Вывод стандартной страницы
-// @Tags signInPass
-// @Accept  json
-// @Produce  json
-// @Router /auth/sign-in/pass [post]
+//
+//	@Summary		signInPass
+//	@Description	Страница входа пользвателя
+//	@Tags			auth
+//	@Accept			json
+//	@Produce		json
+//
+// @Param input body LoginAndPass true "account info"
+//
+//	@Router			/auth/signInPass [post]
+//	 @Success 200 {integer} integer 1
+//	 @Failure 400 object} errorResponse
 func (h *Handler) signInPass(c *gin.Context) {
 	var input LoginAndPass
 
@@ -101,12 +135,18 @@ type signInInputSecondFactor struct {
 }
 
 // signInSecondFactor godoc
-// @Summary Вывод стандартной страницы
-// @Description Вывод стандартной страницы
-// @Tags signInSecondFactor
-// @Accept  json
-// @Produce  json
-// @Router /auth/sign-in/factor [post]
+//
+//	@Summary		signInSecondFactor
+//	@Description	Страница вывода второго фактора при входе
+//	@Tags			auth
+//	@Accept			json
+//	@Produce		json
+//
+// @Param input body BIP_project.Email_confirmation true "account info"
+//
+//	@Router			/auth/signInSecondFactor [post]
+//	 @Success 200 {integer} integer 1
+//	 @Failure 400 object} errorResponse
 func (h *Handler) signInSecondFactor(c *gin.Context) {
 	var input BIP_project.Email_confirmation
 
@@ -126,6 +166,19 @@ func (h *Handler) signInSecondFactor(c *gin.Context) {
 	})
 }
 
+// ResendCode godoc
+//
+//	@Summary		ResendCode
+//	@Description	Повторная отправка кода второго фактора на почту
+//	@Tags			auth
+//	@Accept			json
+//	@Produce		json
+//
+// @Param input body BIP_project.Email_confirmation true "account info"
+//
+//	@Router			/auth/ResendCode [post]
+//	 @Success 200 {integer} integer 1
+//	 @Failure 400 object} errorResponse
 func (h *Handler) ResendCode(c *gin.Context) {
 	var input BIP_project.Email_confirmation
 	if err := c.BindJSON(&input); err != nil {
@@ -142,6 +195,19 @@ func (h *Handler) ResendCode(c *gin.Context) {
 	})
 }
 
+// ChangePassFirstFactor godoc
+//
+//	@Summary		ChangePassFirstFactor
+//	@Description	Проверка первого фактора при изменении пароля
+//	@Tags			auth
+//	@Accept			json
+//	@Produce		json
+//
+// @Param input body LoginAndPass true "account info"
+//
+//	@Router			/auth/ChangePassFirstFactor [post]
+//	 @Success 200 {integer} integer 1
+//	 @Failure 400 object} errorResponse
 func (h *Handler) ChangePassFirstFactor(c *gin.Context) {
 	var input LoginAndPass
 	if err := c.BindJSON(&input); err != nil {
@@ -167,6 +233,19 @@ type ChangePassStruct struct {
 	NewPassword string                         `json:"new_password"`
 }
 
+// ChangePassSecondFactor godoc
+//
+//	@Summary		ChangePassSecondFactor
+//	@Description	Проверка и изменение второго фактора при измеинении пароля
+//	@Tags			auth
+//	@Accept			json
+//	@Produce		json
+//
+// @Param input body ChangePassStruct true "account info"
+//
+//	@Router			/auth/ChangePassSecondFactor [post]
+//	 @Success 200 {integer} integer 1
+//	 @Failure 400 object} errorResponse
 func (h *Handler) ChangePassSecondFactor(c *gin.Context) {
 	var input ChangePassStruct
 
@@ -186,6 +265,19 @@ func (h *Handler) ChangePassSecondFactor(c *gin.Context) {
 	})
 }
 
+// ChangeLoginFirstFactor godoc
+//
+//	@Summary		ChangeLoginFirstFactor
+//	@Description	Проверка первого фактора при изменении логина
+//	@Tags			auth
+//	@Accept			json
+//	@Produce		json
+//
+// @Param input body LoginAndPass true "account info"
+//
+//	@Router			/auth/ChangeLoginFirstFactor [post]
+//	 @Success 200 {integer} integer 1
+//	 @Failure 400 object} errorResponse
 func (h *Handler) ChangeLoginFirstFactor(c *gin.Context) {
 	var input LoginAndPass
 	if err := c.BindJSON(&input); err != nil {
@@ -211,6 +303,19 @@ type ChangeLoginStruct struct {
 	NewLogin string                         `json:"new_login" binding:"required"`
 }
 
+// ChangeLoginSecondFactor godoc
+//
+//	@Summary		ChangeLoginSecondFactor
+//	@Description	Проверка второго фактора при изменении логина
+//	@Tags			auth
+//	@Accept			json
+//	@Produce		json
+//
+// @Param input body ChangeLoginStruct true "account info"
+//
+//	@Router			/auth/ChangeLoginSecondFactor [post]
+//	 @Success 200 {integer} integer 1
+//	 @Failure 400 object} errorResponse
 func (h *Handler) ChangeLoginSecondFactor(c *gin.Context) {
 	var input ChangeLoginStruct
 
@@ -232,6 +337,19 @@ func (h *Handler) ChangeLoginSecondFactor(c *gin.Context) {
 	})
 }
 
+// VerificationNewEmail godoc
+//
+//	@Summary		VerificationNewEmail
+//	@Description	Подтверждение новой почты
+//	@Tags			auth
+//	@Accept			json
+//	@Produce		json
+//
+// @Param input body BIP_project.Email_confirmation true "account info"
+//
+//	@Router			/auth/VerificationNewEmail [post]
+//	 @Success 200 {integer} integer 1
+//	 @Failure 400 object} errorResponse
 func (h *Handler) VerificationNewEmail(c *gin.Context) {
 	var input BIP_project.Email_confirmation
 

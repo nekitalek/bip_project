@@ -7,6 +7,16 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// GetUser godoc
+//
+//	@Summary		GetUser
+//	@Description	Получение информации о пользователе
+//	@Tags			user
+//	@Accept			json
+//	@Produce		json
+//	@Router			/user/GetUser [get]
+//	 @Success 200 {integer} integer 1
+//	 @Failure 400 object} errorResponse
 func (h *Handler) GetUser(c *gin.Context) {
 	userId, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
