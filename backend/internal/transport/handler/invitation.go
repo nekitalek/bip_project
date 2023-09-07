@@ -8,6 +8,16 @@ import (
 	BIP_project "github.com/nekitalek/bip_project/backend"
 )
 
+// CreateInvitation godoc
+//
+//	@Summary		CreateInvitation
+//	@Description	Создание приглашения
+//	@Tags			invite
+//	@Accept			json
+//	@Produce		json
+//	@Router			/invitation/CreateInvitation [post]
+//	 @Success 200 {integer} integer 1
+//	 @Failure 400 object} errorResponse
 func (h *Handler) CreateInvitation(c *gin.Context) {
 	input := new(BIP_project.Event_invitations_input)
 
@@ -33,6 +43,16 @@ func (h *Handler) CreateInvitation(c *gin.Context) {
 	})
 }
 
+// GetInvitation godoc
+//
+//	@Summary		GetInvitation
+//	@Description	Получение приглашения
+//	@Tags			invite
+//	@Accept			json
+//	@Produce		json
+//	@Router			/invitation/GetInvitation [get]
+//	 @Success 200 {integer} integer 1
+//	 @Failure 400 object} errorResponse
 func (h *Handler) GetInvitation(c *gin.Context) {
 	user_id, err := getUserId(c)
 	if err != nil {
@@ -48,6 +68,16 @@ func (h *Handler) GetInvitation(c *gin.Context) {
 	c.JSON(http.StatusOK, inv)
 }
 
+// UpdateInvitation godoc
+//
+//	@Summary		UpdateInvitation
+//	@Description	Обновление статуса приглашения
+//	@Tags			invite
+//	@Accept			json
+//	@Produce		json
+//	@Router			/invitation/UpdateInvitation [patch]
+//	 @Success 200 {integer} integer 1
+//	 @Failure 400 object} errorResponse
 func (h *Handler) UpdateInvitation(c *gin.Context) {
 	input := new(BIP_project.Event_invitations_input)
 
@@ -76,6 +106,16 @@ func (h *Handler) UpdateInvitation(c *gin.Context) {
 	})
 }
 
+// DeleteInvitation godoc
+//
+//	@Summary		DeleteInvitation
+//	@Description	Удаление приглашения
+//	@Tags			invite
+//	@Accept			json
+//	@Produce		json
+//	@Router			/invitation/DeleteInvitation [delete]
+//	 @Success 200 {integer} integer 1
+//	 @Failure 400 object} errorResponse
 func (h *Handler) DeleteInvitation(c *gin.Context) {
 	input := new(BIP_project.Event_invitations_input)
 

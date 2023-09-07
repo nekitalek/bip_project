@@ -8,6 +8,16 @@ import (
 	BIP_project "github.com/nekitalek/bip_project/backend"
 )
 
+// CreateEvent godoc
+//
+//	@Summary		CreateEvent
+//	@Description	Создание нового события
+//	@Tags			event
+//	@Accept			json
+//	@Produce		json
+//	@Router			/event_item/CreateEvent [post]
+//	 @Success 200 {integer} integer 1
+//	 @Failure 400 object} errorResponse
 func (h *Handler) CreateEvent(c *gin.Context) {
 	input := new(BIP_project.Event_items)
 
@@ -33,6 +43,16 @@ func (h *Handler) CreateEvent(c *gin.Context) {
 	})
 }
 
+// GetEvents godoc
+//
+//	@Summary		GetEvents
+//	@Description	Получение нового события
+//	@Tags			event
+//	@Accept			json
+//	@Produce		json
+//	@Router			/event_item/GetEvents [get]
+//	 @Success 200 {integer} integer 1
+//	 @Failure 400 object} errorResponse
 func (h *Handler) GetEvents(c *gin.Context) {
 	input := new(BIP_project.Event_items_input)
 
@@ -48,6 +68,16 @@ func (h *Handler) GetEvents(c *gin.Context) {
 	c.JSON(http.StatusOK, events)
 }
 
+// UpdateEvent godoc
+//
+//	@Summary		UpdateEvent
+//	@Description	Обновление события
+//	@Tags			event
+//	@Accept			json
+//	@Produce		json
+//	@Router			/event_item/UpdateEvent [patch]
+//	 @Success 200 {integer} integer 1
+//	 @Failure 400 object} errorResponse
 func (h *Handler) UpdateEvent(c *gin.Context) {
 	input := new(BIP_project.Event_items_input)
 
@@ -76,6 +106,16 @@ func (h *Handler) UpdateEvent(c *gin.Context) {
 	})
 }
 
+// DeleteEvent godoc
+//
+//	@Summary		DeleteEvent
+//	@Description	Удаление события
+//	@Tags			event
+//	@Accept			json
+//	@Produce		json
+//	@Router			/event_item/DeleteEvent [delete]
+//	 @Success 200 {integer} integer 1
+//	 @Failure 400 object} errorResponse
 func (h *Handler) DeleteEvent(c *gin.Context) {
 	eventId, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
