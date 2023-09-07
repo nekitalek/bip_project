@@ -1,7 +1,7 @@
 https:
     port: "8080"
-    cert: "cert.pem"
-    key: "key.pem"
+    cert: ".certificate//cert.pem"
+    key: ".certificate//key.pem"
 
 db:
     username: "postgres"
