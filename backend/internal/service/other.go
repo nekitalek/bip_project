@@ -16,7 +16,6 @@ import (
 )
 
 const (
-	// salt                 = "uh3yf8r7g17312341234d"
 	emailConfirmationTTL = 24 * time.Hour
 	minCode              = 100000
 	maxCode              = 999999

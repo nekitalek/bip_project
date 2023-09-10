@@ -76,4 +76,16 @@ CREATE TABLE friends (
 
 
 
+--------------------------------------------------------------------------------------------------------------------------
+CREATE TABLE jwt_blacklist (
+    id SERIAL PRIMARY KEY,
+    user_id int REFERENCES users(user_id) on delete cascade not null,
+    --время с которого начинается валидные токены
+    token_valid_from TIMESTAMP not null,
+    --время удаления этой записи
+    cleanup_time TIMESTAMP not null
+);
+
+
+
 

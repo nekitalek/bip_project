@@ -1,6 +1,8 @@
 package repository
 
 import (
+	"time"
+
 	"github.com/jmoiron/sqlx"
 	BIP_project "github.com/nekitalek/bip_project/backend"
 )
@@ -28,6 +30,9 @@ type Authorization interface {
 	GetDataLoginAttempt(login string) (BIP_project.Login_attempt, error)
 	UpdateLoginAttempt(log_attempt BIP_project.Login_attempt) error
 	DeleteLoginAttempt(login string) error
+
+	CheckJWTBlacklist(user_id int, token_valid_from int64) (bool, error)
+	CreateJWTBlacklist(user_id int, token_valid_from, cleanup_time time.Time) error
 }
 
 type EventItem interface {
