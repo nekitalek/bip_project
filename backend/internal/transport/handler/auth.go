@@ -11,12 +11,12 @@ import (
 
 // GetCSRF godoc
 //
-//	@Summary		GetCSRF
+//	@Summary		CSRF
 //	@Description	Получение CSRF токена
 //	@Tags			auth
 //	@Accept			json
 //	@Produce		json
-//	@Router			/auth/GetCSRF [get]
+//	@Router			/CSRF [get]
 //	 @Success 200 {integer} integer 1
 func (h *Handler) GetCSRF(c *gin.Context) {
 	token_CSRF := csrf.Token(c.Request)

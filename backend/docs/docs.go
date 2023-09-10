@@ -17,6 +17,29 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/CSRF": {
+            "get": {
+                "description": "Получение CSRF токена",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "auth"
+                ],
+                "summary": "CSRF",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                }
+            }
+        },
         "/auth/ChangeLoginFirstFactor": {
             "post": {
                 "description": "Проверка первого фактора при изменении логина",
@@ -172,29 +195,6 @@ const docTemplate = `{
                         "description": "Bad Request",
                         "schema": {
                             "$ref": "#/definitions/handler.errorResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/auth/GetCSRF": {
-            "get": {
-                "description": "Получение CSRF токена",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "auth"
-                ],
-                "summary": "GetCSRF",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "integer"
                         }
                     }
                 }
