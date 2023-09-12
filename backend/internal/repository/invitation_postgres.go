@@ -18,9 +18,9 @@ func NewInvitationPostgres(db *sqlx.DB) *InvitationPostgres {
 
 func (r *InvitationPostgres) CreateInvitation(user_id int, input *BIP_project.Event_invitations_input) (int, error) {
 	var id int
-	query := fmt.Sprintf("INSERT INTO %s (event_id, user_id, status) SELECT $1, $2, $3 FROM %s e WHERE e.event_items_id = $1 AND e.admin = $4 RETURNING event_invitations_id", eventInvitationsTable, eventItemsTable)
+	query := fmt.Sprintf("INSERT INTO %s (event_id, user_id, status) SELECT $1, $2, $3 FROM %s e WHERE e.event_items_id = $1 RETURNING event_invitations_id", eventInvitationsTable, eventItemsTable)
 
-	row := r.db.QueryRow(query, input.Event_id, input.User_id, BIP_project.Pending, user_id)
+	row := r.db.QueryRow(query, input.Event_id, input.User_id, input.Status)
 	if err := row.Scan(&id); err != nil {
 		return 0, err
 	}

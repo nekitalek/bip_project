@@ -86,6 +86,11 @@ CREATE TABLE jwt_blacklist (
     cleanup_time TIMESTAMP not null
 );
 
-
+CREATE TABLE push_notification (
+    id SERIAL PRIMARY KEY,
+    user_id int REFERENCES users(user_id) on delete cascade not null,
+    --токен полученный от firebase
+    push_token TEXT not null
+);
 
 

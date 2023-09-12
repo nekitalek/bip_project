@@ -89,6 +89,11 @@ func (h *Handler) InitRoutes() *gin.Engine {
 			invitation.PATCH("/:id", h.UpdateInvitation)
 			invitation.DELETE("/", h.DeleteInvitation)
 		}
+		push := api.Group("push_notification")
+		{
+			push.POST("/", h.CreatePushNotification)
+			push.DELETE("/", h.DeletePushNotification)
+		}
 
 		// lists := api.Group("/lists")
 		// {
