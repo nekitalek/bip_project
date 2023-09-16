@@ -111,3 +111,7 @@ type Event_invitations_input struct {
 	User_id              *int    `json:"user_id" form:"user_id"`
 	Status               *Status `json:"status" form:"status"`
 }
+
+type Push_notification_input struct {
+	Token string `json:"token"`
+}

@@ -89,6 +89,21 @@ info:
   title: BIP API
   version: "1.0"
 paths:
+  /CSRF:
+    get:
+      consumes:
+      - application/json
+      description: Получение CSRF токена
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: integer
+      summary: CSRF
+      tags:
+      - auth
   /auth/ChangeLoginFirstFactor:
     post:
       consumes:
@@ -191,21 +206,6 @@ paths:
           schema:
             $ref: '#/definitions/handler.errorResponse'
       summary: ChangePassSecondFactor
-      tags:
-      - auth
-  /auth/GetCSRF:
-    get:
-      consumes:
-      - application/json
-      description: Получение CSRF токена
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            type: integer
-      summary: GetCSRF
       tags:
       - auth
   /auth/ResendCode:

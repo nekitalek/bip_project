@@ -3,6 +3,7 @@ package service
 import (
 	"errors"
 	"fmt"
+	"os"
 	"time"
 
 	"github.com/dgrijalva/jwt-go"
@@ -21,8 +22,7 @@ type AuthService struct {
 }
 
 const (
-	signingKey = "ak*sdhf$187y@foiu1e"
-	tokenTTL   = 12 * time.Hour
+	tokenTTL = 12 * time.Hour
 )
 
 func NewAuthService(repo repository.Authorization) *AuthService {
@@ -42,8 +42,7 @@ func (s *AuthService) GenerateTokenJWT(user_id, code int) (string, error) {
 		},
 		user.User_id,
 	})
-
-	return token.SignedString([]byte(signingKey))
+	return token.SignedString([]byte(os.Getenv("JwT_SINGING_KEY")))
 
 }
 
@@ -77,7 +76,7 @@ func (s *AuthService) ParseToken(accessToken string) (int, error) {
 			return nil, errors.New("invalid signing method")
 		}
 
-		return []byte(signingKey), nil
+		return []byte(os.Getenv("JwT_SINGING_KEY")), nil
 	})
 	if err != nil {
 		return 0, err
@@ -88,6 +87,15 @@ func (s *AuthService) ParseToken(accessToken string) (int, error) {
 		return 0, errors.New("token claims are not of type *tokenClaims")
 	}
 
+	// проверить в черном списке токен
+	res, err := s.repo.CheckJWTBlacklist(claims.UserId, claims.IssuedAt)
+	if err != nil {
+		return 0, err
+	}
+
+	if !res {
+		return 0, errors.New("token has been revoked")
+	}
 	return claims.UserId, nil
 }
 
@@ -330,7 +338,8 @@ func (s *AuthService) ChangePassSecondFactor(e_conf BIP_project.Email_confirmati
 		return err
 	}
 	//отзываем токены
-	err = s.repo.DeleteJwtTokens(e_conf.User_id)
+	//err = s.repo.DeleteJwtTokens(db_e_conf.User_id)
+	err = s.repo.CreateJWTBlacklist(e_conf.User_id, time.Now(), time.Now().Add(tokenTTL))
 	if err != nil {
 		return err
 	}
@@ -372,7 +381,8 @@ func (s *AuthService) VerificationNewEmail(e_conf BIP_project.Email_confirmation
 		return err
 	}
 	//отзываем токены
-	err = s.repo.DeleteJwtTokens(db_e_conf.User_id)
+	// err = s.repo.DeleteJwtTokens(db_e_conf.User_id)
+	s.repo.CreateJWTBlacklist(e_conf.User_id, time.Now(), time.Now().Add(tokenTTL))
 	if err != nil {
 		return err
 	}

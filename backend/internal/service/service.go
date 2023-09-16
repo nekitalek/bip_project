@@ -59,19 +59,26 @@ type Invitation interface {
 type User interface {
 	GetUser(user_id int) (BIP_project.User_data, error)
 }
+type PushNotification interface {
+	CreatePushNotification(user_id int, token string) error
+	DeletePushNotification(user_id int, token string) error
+	SendPushNotification(event_id int) error
+}
 
 type Service struct {
 	Authorization
 	Invitation
 	EventItem
 	User
+	PushNotification
 }
 
 func NewService(repos *repository.Repository) *Service {
 	return &Service{
-		Authorization: NewAuthService(repos.Authorization),
-		Invitation:    NewInvitationService(repos.Invitation),
-		EventItem:     NewEventItemService(repos.EventItem),
-		User:          NewUserService(repos.Authorization),
+		Authorization:    NewAuthService(repos.Authorization),
+		Invitation:       NewInvitationService(repos.Invitation),
+		EventItem:        NewEventItemService(repos.EventItem),
+		User:             NewUserService(repos.Authorization),
+		PushNotification: NewPushNotificationService(repos.PushNotification),
 	}
 }

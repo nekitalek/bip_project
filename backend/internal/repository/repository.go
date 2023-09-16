@@ -1,6 +1,8 @@
 package repository
 
 import (
+	"time"
+
 	"github.com/jmoiron/sqlx"
 	BIP_project "github.com/nekitalek/bip_project/backend"
 )
@@ -28,6 +30,9 @@ type Authorization interface {
 	GetDataLoginAttempt(login string) (BIP_project.Login_attempt, error)
 	UpdateLoginAttempt(log_attempt BIP_project.Login_attempt) error
 	DeleteLoginAttempt(login string) error
+
+	CheckJWTBlacklist(user_id int, token_valid_from int64) (bool, error)
+	CreateJWTBlacklist(user_id int, token_valid_from, cleanup_time time.Time) error
 }
 
 type EventItem interface {
@@ -43,16 +48,24 @@ type Invitation interface {
 	DeleteInvitation(user_id int, input *BIP_project.Event_invitations_input) error
 }
 
+type PushNotification interface {
+	CreatePushNotification(user_id int, token string) (int, error)
+	DeletePushNotification(user_id int, token string) error
+	GetPushNotification(event_id int, status BIP_project.Status) ([]string, error)
+}
+
 type Repository struct {
 	Authorization
 	Invitation
 	EventItem
+	PushNotification
 }
 
 func NewRepository(db *sqlx.DB) *Repository {
 	return &Repository{
-		Authorization: NewAuthPostgres(db),
-		Invitation:    NewInvitationPostgres(db),
-		EventItem:     NewEventItemPostgres(db),
+		Authorization:    NewAuthPostgres(db),
+		Invitation:       NewInvitationPostgres(db),
+		EventItem:        NewEventItemPostgres(db),
+		PushNotification: NewPushNotificationPostgres(db),
 	}
 }

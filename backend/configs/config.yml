@@ -10,6 +10,10 @@ db:
     dbname: "postgres"
     sslmode: "require"
 
+smtp:
+    from: "bip.project@rambler.ru"
+    smtpHost: "smtp.rambler.ru"
+    smtpPort: 587
 
 template:
     EmailConfirmation: "htmlTemplate//template.html"

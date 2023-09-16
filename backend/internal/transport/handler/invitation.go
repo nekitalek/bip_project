@@ -36,6 +36,10 @@ func (h *Handler) CreateInvitation(c *gin.Context) {
 		newErrorResponse(c, http.StatusForbidden, err.Error())
 		return
 	}
+	//костыль
+	if *input.Status == BIP_project.Confirmed {
+		err = h.services.PushNotification.SendPushNotification(*input.Event_id)
+	}
 
 	c.JSON(http.StatusOK, map[string]interface{}{
 		"status":        "ok",

@@ -22,6 +22,8 @@ const (
 	emailConfirmationTable = "email_confirmation"
 	eventItemsTable        = "event_items"
 	eventInvitationsTable  = "event_invitations"
+	jwtBlacklistTable      = "JWT_blacklist"
+	pushNotificationTable  = "push_notification"
 )
 
 func NewPostgresDB(cfg Config) (*sqlx.DB, error) {

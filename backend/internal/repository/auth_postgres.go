@@ -2,6 +2,7 @@ package repository
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/jmoiron/sqlx"
 	BIP_project "github.com/nekitalek/bip_project/backend"
@@ -125,8 +126,7 @@ func (r *AuthPostgres) UpdateCodeEmailConf(e_conf_id, new_code int) error {
 func (r *AuthPostgres) UpdatePass(login, password, new_password string) error {
 	query := fmt.Sprintf("UPDATE %s SET password_hash = $3 WHERE login=$1 AND password_hash = $2", usersTable)
 
-	row := r.db.QueryRow(query, login, password, new_password)
-	fmt.Println("UpdatePass, ", row)
+	r.db.QueryRow(query, login, password, new_password)
 
 	return nil
 }
@@ -168,16 +168,39 @@ func (r *AuthPostgres) CreateDataLoginAttempt(log_attempt BIP_project.Login_atte
 }
 
 func (r *AuthPostgres) UpdateLoginAttempt(log_attempt BIP_project.Login_attempt) error {
-
 	query := fmt.Sprintf("UPDATE %s SET email = $2,number_of_inputs = $3, unlock_time = $4,login_method = $5  WHERE login_attempt_id=$1", loginAttemptTable)
-
 	_ = r.db.QueryRow(query, log_attempt.Login_attempt_id, log_attempt.Email, log_attempt.Number_of_inputs, log_attempt.Unlock_time, log_attempt.Login_method)
-
 	return nil
 }
 
 func (r *AuthPostgres) DeleteLoginAttempt(login string) error {
 	query := fmt.Sprintf("DELETE FROM %s WHERE email = $1", loginAttemptTable)
 	_ = r.db.QueryRow(query, login)
+	return nil
+}
+
+func (r *AuthPostgres) CheckJWTBlacklist(user_id int, token_valid_from int64) (bool, error) {
+	var cnt int
+	query := fmt.Sprintf("SELECT COUNT(*) FROM %s WHERE (token_valid_from>$1 AND user_id=$2)", jwtBlacklistTable)
+	err := r.db.Get(&cnt, query, time.Unix(token_valid_from, 0), user_id)
+
+	if err != nil {
+		return false, err
+	}
+	if cnt == 0 {
+		return true, nil
+	}
+	return false, nil
+}
+
+func (r *AuthPostgres) CreateJWTBlacklist(user_id int, token_valid_from, cleanup_time time.Time) error {
+	var id int
+	query := fmt.Sprintf("INSERT INTO %s (user_id,token_valid_from, cleanup_time) values ($1, $2, $3) RETURNING id", jwtBlacklistTable)
+
+	row := r.db.QueryRow(query, user_id, token_valid_from, cleanup_time)
+	if err := row.Scan(&id); err != nil {
+		return err
+	}
+
 	return nil
 }

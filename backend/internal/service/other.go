@@ -7,14 +7,15 @@ import (
 	"io"
 	"math"
 	"math/rand"
+	"os"
 	"text/template"
 	"time"
 
 	"github.com/go-gomail/gomail"
+	"github.com/spf13/viper"
 )
 
 const (
-	salt                 = "uh3yf8r7g17312341234d"
 	emailConfirmationTTL = 24 * time.Hour
 	minCode              = 100000
 	maxCode              = 999999
@@ -26,7 +27,7 @@ func generatePasswordHash(password string) string {
 	hash := sha256.New()
 
 	var passwordBytes = []byte(password)
-	passwordBytes = append(passwordBytes, salt...)
+	passwordBytes = append(passwordBytes, os.Getenv("SALT")...)
 
 	hash.Write(passwordBytes)
 
@@ -35,10 +36,11 @@ func generatePasswordHash(password string) string {
 
 func sendEmailWithCode(login, templateName string, code int) error {
 	// Sender data
-	from := "bip.project@rambler.ru"
-	password := "drYk8ykHR399"
-	smtpHost := "smtp.rambler.ru"
-	smtpPort := 587
+	from := viper.GetString("smtp.from")
+	// password := "drYk8ykHR399"
+	password := os.Getenv("SMTP_PASSWORD")
+	smtpHost := viper.GetString("smtp.smtpHost")
+	smtpPort := viper.GetInt("smtp.smtpPort")
 
 	message := gomail.NewMessage()
 	message.SetHeader("From", from)
