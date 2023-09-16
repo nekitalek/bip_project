@@ -14,6 +14,6 @@ sendRequest('GET', requestURL)
     .then(function(data){
         let username = document.getElementById("username").value = data[k].username;
         let email = document.getElementById("email_setting").value = data[k].email;
-        let phone = document.getElementById("phone").value = data[k].phone;
+        //let phone = document.getElementById("phone").value = data[k].phone;
     })
     .catch(err => console.log(err))
