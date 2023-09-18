@@ -10,6 +10,7 @@ async function sendRequest(method, url, body = null){
 
 let k = 1
 
+// request to recieve user settings from server
 sendRequest('GET', requestURL)
     .then(function(data){
         let username = document.getElementById("username").value = data[k].username;
@@ -17,3 +18,5 @@ sendRequest('GET', requestURL)
         //let phone = document.getElementById("phone").value = data[k].phone;
     })
     .catch(err => console.log(err))
+
+// request to send changed settings to server and verify them
