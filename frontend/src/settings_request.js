@@ -20,3 +20,10 @@ sendRequest('GET', requestURL)
     .catch(err => console.log(err))
 
 // request to send changed settings to server and verify them
+sendRequest('POST', requestURL)
+    .then(function(data){
+        let username = document.getElementById("username").value = data[k].username;
+        let email = document.getElementById("email_setting").value = data[k].email;
+        //let phone = document.getElementById("phone").value = data[k].phone;
+    })
+    .catch(err => console.log(err))
