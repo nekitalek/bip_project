@@ -3,9 +3,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <title>Регистрация | BIPPROJECT</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="js/2fa.js"></script>
-    <script src="js/csrf_check.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>  
+    <script src="js/csrf_check.js"></script>  
 </head>
 <body>
     <!-- Main sub-window -->
@@ -44,11 +43,12 @@
                               <label for="terms" class="font-light text-gray-500 dark:text-gray-300">Я согласен на обработку персональных данных</label>
                             </div>
                         </div>
-                        <button onclick="openModal(); return false;" class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" onclick="openModal" >Зарегистрироваться</button>
+                        <button id="send_form" onclick="openModal(); return false;" class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" onclick="openModal" >Зарегистрироваться</button>
                         <p class="text-sm font-light text-gray-500 dark:text-gray-400">
                             Уже есть аккаунт? <a href="login.html" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Войти</a>
                         </p>
                     </form>
+                    <!-- <script src="js/send_form.js"></script> -->
                 </div>
             </div>
         </div>
@@ -68,12 +68,14 @@
                 <!-- Поле ввода из 6 ячеек -->
                 <div class="mb-4">
                     <label class="block text-gray-700 dark:text-gray-300 font-bold mb-2" for="input-field">Введите код из письма:</label>
-                    <input class="shadow appearance-none border rounded w-full py-2 px-3 dark:text-gray-900 leading-tight focus:outline-none focus:shadow-outline dark:border-red-500" id="input-field" type="text" placeholder="Введите шестизначный код">
+                    <input id="factor" class="shadow appearance-none border rounded w-full py-2 px-3 dark:text-gray-900 leading-tight focus:outline-none focus:shadow-outline dark:border-red-500" id="input-field" type="text" placeholder="Введите шестизначный код">
+                    
                 </div>
                 <!-- Кнопки -->
                 <div class="flex justify-end pt-2">
                     <button class="px-4 bg-transparent p-3 rounded-lg dark:text-indigo-400 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-indigo-400 dark:hover:text-white mr-2" onclick="closeModal()">Отмена</button>
-                    <button class="modal-close px-4 dark:bg-indigo-400 p-3 rounded-lg text-white hover:bg-indigo-400 dark:hover:bg-white" type="submit">Отправить</button>
+                    <button class="modal-close px-4 dark:bg-indigo-400 p-3 rounded-lg text-white hover:bg-indigo-400 dark:hover:bg-white" type="submit" >Отправить</button>
+                    
                 </div>
             </form>
         </div>

@@ -28,7 +28,7 @@ function sendData(data) {
   });
 
   // Set up our request
-  XHR.open("POST", "https://example.com/cors.php");
+  XHR.open("POST", "https://158.160.27.251:443/auth/sign-up/password");
 
   // Add the required HTTP header for form data POST requests
   XHR.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
