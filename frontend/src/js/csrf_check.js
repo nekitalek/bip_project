@@ -1,4 +1,4 @@
-const requestURL = 'https://158.160.27.251:443/CSRF'
+const requestURL = 'https://158.160.27.251/CSRF'
 
 async function sendRequest(method, url, body = null){
     return await fetch(url).then(response =>{
