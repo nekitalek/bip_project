@@ -1,5 +1,6 @@
 https:
-    port: "8080"
+    host: "158.160.27.251"
+    port: "443"
     cert: ".certificate//cert.pem"
     key: ".certificate//key.pem"
 
@@ -8,7 +9,7 @@ db:
     host: "localhost"
     port: "5432"
     dbname: "postgres"
-    sslmode: "require"
+    sslmode: "disable"
 
 smtp:
     from: "bip.project@rambler.ru"
