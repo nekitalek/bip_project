@@ -15,6 +15,7 @@ function verify2fa(){
 
 
 const btnSend2FA = document.querySelector('btn-send-2fa')
+const fa2value = document.querySelector('2fa-value')
 
 function fa2POST(body, cb){
     const xhr = new XMLHttpRequest();
@@ -36,9 +37,9 @@ function fa2POST(body, cb){
 btnSend2FA.addEventListener("click", e => {
     fa2POST({
         "user_id": 1,
-        "code": 545743,
+        "code": fa2value.value,
         "device": "windows"
     }, (response) => {
-        console.log(response))
+        console.log(response)
     }
-})
+)

@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  backend:
+    env_file:
+    - ./.env
+    build: ./
+    command: ./backend
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+    environment:
+      - DB_PASSWORD=qwerty
+      - SALT=uh3yf8r7g17312341234d
+      - SMTP_PASSWORD=drYk8ykHR399
+      - JwT_SINGING_KEY=ak*sdhf$187y@foiu1e
+      - FIREBASE_AUTH_KEY=AAAABVr7Cpc:APA91bEw3BFcPxc_DVcAQJH1hSpH7bfACvFyi4lXM4jt6uTcgpP0fsffpsnU0AQaZV7s1kkprCqCl7wHxcQyEfyZYqpvzgXscN4MOsbjeabrXBwr-QIQqqhgIdNA9NRY2ARwqniUZLjf
+
+  db:
+    restart: always
+    image: postgres:latest
+    volumes:
+    - ./.database/postgres/data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=qwerty
+    ports:
+      - 5436:5432
