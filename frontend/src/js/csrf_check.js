@@ -9,11 +9,8 @@ async function sendRequest(method, url, body = null){
 // request to recieve csrf from server
 sendRequest('GET', requestURL)
     .then(function(data){
-        var csrf = data.token_CSRF
+        const csrf = JSON.stringify(data.token_CSRF)
+        localStorage.setItem('token_CSRF', csrf);
         console.log(data.token_CSRF)
-        let getting = browser.cookies.get(
-            Cookie                // object
-          )
-        console.log(Cookie)
     })
     .catch(err => console.log(err))
