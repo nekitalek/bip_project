@@ -71,7 +71,7 @@ function JoinEvent(button_id){
     var event_id = parseInt(button_id)
     const token = localStorage.getItem('token_CSRF');
     const auth_token = localStorage.getItem('auth_token');
-    const user_id = localStorage.getItem('user_id');
+    const user_id = parseInt(localStorage.getItem('user_id'));
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "https://51.250.24.31:65000/api/invitation/",false);
     xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
