@@ -21,8 +21,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
     var time_end = document.getElementById("end_time").value;
     var place = document.getElementById("address").value;
     var description = document.getElementById("description").value;
-    var public = document.getElementsById('checkbox');
-    const game = document.querySelector('input[name="list-radio"]:checked').value;
+    var public = document.getElementById('checkbox');
+    var game = document.querySelector('input[name="list-radio"]:checked').value;
 
     const body = JSON.stringify({
         "time_start": time_start,
