@@ -48,9 +48,13 @@ function GetEvents(){
         continue
       }
     }
+    
     const comp_string = 'add'
     function clickFunc() {
       console.log(this.id)
+      var str = this.id
+      str = str.substring(2)
+      console.log(str)
       if(comp_string < this.id){
         JoinEvent(this.id); 
       }
@@ -58,7 +62,7 @@ function GetEvents(){
         LeftEvent(this.id)
       }
     }
-
+    
 }
 
 
@@ -99,7 +103,7 @@ function LeftEvent(button_id){
   const auth_token = localStorage.getItem('auth_token');
   const user_id = localStorage.getItem('user_id');
   const xhr = new XMLHttpRequest();
-  xhr.open("DELETE", "https://51.250.24.31:65000/api/invitation/1",false);
+  xhr.open("DELETE", "https://51.250.24.31:65000/api/invitation/" + event_id,false);
   xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
   xhr.setRequestHeader("X-CSRF-TOKEN", token);
   xhr.setRequestHeader("Authorization", "Bearer " + auth_token);
