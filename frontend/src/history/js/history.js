@@ -51,15 +51,13 @@ function GetEvents(){
     
     const comp_string = 'add'
     function clickFunc() {
-      console.log(this.id)
       var str = this.id
       str = str.substring(2)
-      console.log(str)
-      if(comp_string < this.id){
-        JoinEvent(this.id); 
+      if(comp_string < str){
+        JoinEvent(str); 
       }
       else{
-        LeftEvent(this.id)
+        LeftEvent(str)
       }
     }
     
