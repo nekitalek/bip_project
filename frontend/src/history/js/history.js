@@ -45,10 +45,10 @@ function GetEvents(){
       for (var i=0; i<buttons.length; ++i) {
         buttons[i].addEventListener('click', clickFunc);
       }
-    
+      console.log(buttons)
       const comp_string = 'add'
       function clickFunc() {
-        console.log(this.id)
+        
         if(comp_string < this.id){
           JoinEvent(this.id); 
         }
