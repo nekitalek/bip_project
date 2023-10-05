@@ -51,11 +51,12 @@ function GetEvents(){
     
     function clickFunc() {
       var str = this.id
-      var str1 = str.substring(2,2)
-      if(str1 = 'a'){
+      var str1 = str.substring(2,4)
+      console.log(str1)
+      if(str1 = 'acc'){
         JoinEvent(str); 
       }
-      else{
+      else if(str1 = 'dec'){
         LeftEvent(str)
       }
     }
