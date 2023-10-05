@@ -39,24 +39,23 @@ function GetEvents(){
     }
     document.getElementById('event_grid').innerHTML = out;
 
-    window.addEventListener("DOMContentLoaded", (event) => {
-      var buttons = document.querySelectorAll('button');
-    
-      for (var i=0; i<buttons.length; ++i) {
-        buttons[i].addEventListener('click', clickFunc);
+    var buttons = document.querySelectorAll('button');
+  
+    for (var i=0; i<buttons.length; ++i) {
+      buttons[i].addEventListener('click', clickFunc);
+    }
+    console.log(buttons)
+    const comp_string = 'add'
+    function clickFunc() {
+      
+      if(comp_string < this.id){
+        JoinEvent(this.id); 
       }
-      console.log(buttons)
-      const comp_string = 'add'
-      function clickFunc() {
-        
-        if(comp_string < this.id){
-          JoinEvent(this.id); 
-        }
-        else{
-          LeftEvent(this.id)
-        }
+      else{
+        LeftEvent(this.id)
       }
-    });
+    }
+
 }
 
 
