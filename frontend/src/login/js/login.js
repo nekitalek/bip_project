@@ -1,7 +1,7 @@
 window.addEventListener("DOMContentLoaded", (event) => {
   const el = document.getElementById('send_form');
   if (el) {
-    el.addEventListener('click', openModal);
+    el.addEventListener('click', Login);
   }
 });
 
@@ -38,9 +38,14 @@ alert("Запрос не удался");
       var fa_code = document.getElementById("factor").value;
       if(fa_code){
           fa2POST(fa_code)
-          //if (fa2POST){ // не знаю что возвращает 2фа но выполнение входа в случае успеха
-          Login()
-          //}
+          var jsonResponse = JSON.parse(xhr.responseText);
+          localStorage.setItem('auth_token',jsonResponse["auth_token"]);
+            if (jsonResponse["auth_token"] != null){
+              window.location.href = "https://51.250.24.31/main/main.html"; 
+            }
+            else{
+              alert("Ошибка при регистрации")
+            }
       }
       else alert("please enter the number")
 
@@ -52,7 +57,7 @@ const btnSend2FA = document.querySelector('btn-send-2fa')
 function fa2POST(fa_code){
   const xhr = new XMLHttpRequest();
   const token = localStorage.getItem('token_CSRF')
-
+  const user_id = localStorage.getItem('user_id')
   xhr.open("POST", "https://51.250.24.31:65000/auth/sign-in/sec_factor",false);
   xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
   xhr.setRequestHeader("X-CSRF-TOKEN", token);
@@ -60,7 +65,7 @@ function fa2POST(fa_code){
   xhr.withCredentials = true;
 
   const body = JSON.stringify({
-      "user_id": 1, // я понятия не имею как брать юзер айди поэтому он захардкожен
+      "user_id": parseInt(user_id), // я понятия не имею как брать юзер айди поэтому он захардкожен
       "code": parseInt(fa_code),
       "device": "windows"
     });
@@ -99,4 +104,7 @@ function Login(){
     }
   };
   xhr.send(body);
+  var jsonResponse = JSON.parse(xhr.responseText);
+  const user_id = localStorage.setItem('user_id',jsonResponse["user_id"]);
+  openModal()
 }
