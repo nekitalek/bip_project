@@ -48,7 +48,7 @@ function GetEvents(){
     
       const comp_string = 'add'
       function clickFunc() {
-        if(comp_string < comp_string){
+        if(comp_string < this.id){
           JoinEvent(this.id); 
         }
         else{
