@@ -1,63 +1,41 @@
-function setFormMessage(formElement, type, message) {
-    const messageElement = formElement.querySelector(".form__message");
+window.addEventListener("DOMContentLoaded", (event) => {
+    const el = document.getElementById('send_form');
+    if (el) {
+      el.addEventListener('click', CreateEvent);
+    }
+  });
+  
+  function CreateEvent(){
+  
+    const token = localStorage.getItem('token_CSRF')
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "https://51.250.24.31:65000/api/event",false);
+    xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+    xhr.setRequestHeader("X-CSRF-TOKEN", token);
+  
+    xhr.withCredentials = true;
+  
+    var time_start = document.getElementById("start_time").value;
+    var time_end = document.getElementById("end_time").value;
+    var place = document.getElementById("address").value;
+    var description = document.getElementById("description").value;
+    var public = document.getElementsById('checkbox').checked;
+    const game = document.querySelector('input[name="list-radio"]:checked').value;
 
-    messageElement.textContent = message;
-    messageElement.classList.remove("form__message--success", "form__message--error");
-    messageElement.classList.add(`form__message--${type}`);
-}
-
-function setInputError(inputElement, message) {
-    inputElement.classList.add("form__input--error");
-    inputElement.parentElement.querySelector(".form__input-error-message").textContent = message;
-}
-
-function clearInputError(inputElement) {
-    inputElement.classList.remove("form__input--error");
-    inputElement.parentElement.querySelector(".form__input-error-message").textContent = "";
-}
-
-$(function () {
-    var token = $("meta[name='_csrf']").attr("content");
-    var header = $("meta[name='_csrf_header']").attr("content");
-
-    $(document).ajaxSend(function(e, xhr, options) {
-        xhr.setRequestHeader(header, token);
+    const body = JSON.stringify({
+        "time_start": time_start,
+        "time_end": time_end,
+        "place": place,
+        "game": game,
+        "description": description,
+        "public": public
     });
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-    const loginForm = document.querySelector("#login");
-    const createAccountForm = document.querySelector("#createAccount");
-
-    document.querySelector("#linkCreateAccount").addEventListener("click", e => {
-        e.preventDefault();
-        loginForm.classList.add("form--hidden");
-        createAccountForm.classList.remove("form--hidden");
-    });
-
-    document.querySelector("#linkLogin").addEventListener("click", e => {
-        e.preventDefault();
-        loginForm.classList.remove("form--hidden");
-        createAccountForm.classList.add("form--hidden");
-    });
-
-    loginForm.addEventListener("submit", e => {
-        e.preventDefault();
-
-        // Perform your AJAX/Fetch login
-
-        setFormMessage(loginForm, "error", "Invalid username/password combination");
-    });
-
-    document.querySelectorAll(".form__input").forEach(inputElement => {
-        inputElement.addEventListener("blur", e => {
-            if (e.target.id === "signupUsername" && e.target.value.length > 0 && e.target.value.length < 10) {
-                setInputError(inputElement, "Username must be at least 10 characters in length");
-            }
-        });
-
-        inputElement.addEventListener("input", e => {
-            clearInputError(inputElement);
-        });
-    });
-});
+    xhr.onload = () => {
+      if (xhr.readyState == 4 && xhr.status == 201) {
+        console.log(JSON.parse(xhr.responseText));
+      } else {
+        console.log(`Error: ${xhr.status}`);
+      }
+    };
+    xhr.send(body);
+  }
