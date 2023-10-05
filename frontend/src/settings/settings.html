@@ -14,7 +14,7 @@
         <div class="flex items-center md:order-2">
             <button type="button" class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
               <span class="sr-only">Open user menu</span>
-              <img class="w-8 h-8 rounded-full" src="profile_pic.jpg" alt="user photo">
+              <img class="w-8 h-8 rounded-full" src="./styles/profile_pic.jpg" alt="user photo">
             </button>
             <!-- Dropdown menu -->
             <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
@@ -82,7 +82,7 @@
                 <div class="sm:col-span-3">
                     <label for="password" class="block text-sm font-medium leading-1 text-gray-200">Old password</label>
                     <div class="mt-2">
-                      <input type="password" name="fpassword" id="old_password" autocomplete="password" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                      <input type="password" name="fpassword" id="old_password" autocomplete="password" placeholder="••••••••" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                   </div>
           
@@ -96,11 +96,36 @@
             </div>
           
             <div class="mt-6 flex items-center justify-end gap-x-6">
-              <button type="button" class="text-sm font-semibold leading-6 text-gray-900">Cancel</button>
-              <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
+              <button id="send_settings" type="button" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
             </div>
           </form>
     </div>
+
+    <!-- Модальное окно -->
+<div class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center hidden" id="2fa_modal">
+  <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
+  <div class="modal-container bg-white dark:bg-gray-900 w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+      <!-- Заголовок окна -->
+      <div class="modal-header p-3">
+          <h3 class="modal-title text-lg font-medium text-gray-700 dark:text-gray-400 text-center">Введите данные</h3>
+      </div>
+      <!-- Основное содержимое окна -->
+      <div class="modal-content py-4 text-left px-6">
+          <form>
+              <!-- Поле ввода из 6 ячеек -->
+              <div class="mb-4">
+                  <label class="block text-gray-700 dark:text-gray-300 font-bold mb-2" for="input-field">Введите код из письма:</label>
+                  <input class="shadow appearance-none border rounded w-full py-2 px-3 dark:text-gray-900 leading-tight focus:outline-none focus:shadow-outline dark:border-gray-500" id="factor" type="text" placeholder="Введите шестизначный код">
+              </div>
+              <!-- Кнопки -->
+              <div class="flex justify-end pt-2">
+                  <button class="px-4 bg-transparent p-3 rounded-lg text-indigo-500 dark:text-indigo-400 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-indigo-400 dark:hover:text-white mr-2" type="button" onclick="closeModal()">Отмена</button>
+                  <button id = "confirm_2fa" type="button" onclick="verify2fa()" class="btn-send-2fa modal-close px-4 bg-indigo-500 dark:bg-indigo-400 p-3 rounded-lg text-white hover:bg-indigo-400 dark:hover:bg-white">Отправить</button>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
 <footer class="fixed bottom-0 left-0 z-20 w-full p-4 bg-white border-t border-gray-200 shadow md:flex md:items-center md:justify-between md:p-6 dark:bg-gray-800 dark:border-gray-600">
   <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="#" class="hover:underline">IBKS™</a>. All Rights Reserved.
   </span>
