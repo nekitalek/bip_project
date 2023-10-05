@@ -43,7 +43,7 @@ function GetEvents(){
       var participants = '';
       for (var participant in event_list[key].participant){
         console.log(participant)
-        participants += event_list[participant].username 
+        participants += participant.username 
         
       }
 
