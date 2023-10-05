@@ -53,10 +53,10 @@ function GetEvents(){
       var str = this.id
       var str1 = str.substring(2,4)
       console.log(str1)
-      if(str1 = 'acc'){
+      if(str1 == 'ac'){
         JoinEvent(str); 
       }
-      else if(str1 = 'dec'){
+      else if(str1 == 'de'){
         LeftEvent(str)
       }
     }
