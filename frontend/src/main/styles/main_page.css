@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#map {
+    width: 100%; /* ширина в 70% экрана */
+    height: 900px; /* задаем высоту */
+    float: left; /* задаем выравнивание влево */
+    padding: -1px; 
+    margin: 1px;
+}
+
+    

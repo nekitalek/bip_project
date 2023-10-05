@@ -1,4 +1,4 @@
-const requestURL = 'https://192.168.153.129:65000/CSRF'
+const requestURL = 'https://192.168.6.144:65000/CSRF'
 
 async function sendRequest(method, url, body = null){
     return await fetch(url).then(response =>{

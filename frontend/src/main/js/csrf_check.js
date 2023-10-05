@@ -1,4 +1,4 @@
-const requestURL = 'https://192.168.153.129:65000/CSRF'
+const requestURL = 'https://192.168.6.144:65000/CSRF'
 
 async function sendRequest(method, url, body = null){
     return await fetch(url).then(response =>{
@@ -11,5 +11,9 @@ sendRequest('GET', requestURL)
     .then(function(data){
         var csrf = data.token_CSRF
         console.log(data.token_CSRF)
+        let getting = browser.cookies.get(
+            Cookie                // object
+          )
+        console.log(Cookie)
     })
     .catch(err => console.log(err))
