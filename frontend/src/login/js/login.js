@@ -38,14 +38,8 @@ alert("Запрос не удался");
       var fa_code = document.getElementById("factor").value;
       if(fa_code){
           fa2POST(fa_code)
-          var jsonResponse = JSON.parse(xhr.responseText);
-          localStorage.setItem('auth_token',jsonResponse["auth_token"]);
-            if (jsonResponse["auth_token"] != null){
-              window.location.href = "https://51.250.24.31/main/main.html"; 
-            }
-            else{
-              alert("Ошибка при регистрации")
-            }
+          
+            
       }
       else alert("please enter the number")
 
@@ -77,6 +71,14 @@ function fa2POST(fa_code){
       }
   };
   xhr.send(body);
+  var jsonResponse = JSON.parse(xhr.responseText);
+  localStorage.setItem('auth_token',jsonResponse["auth_token"]);
+  if (xhr.status != 200){
+    window.location.href = "https://51.250.24.31/main/main.html"; 
+  }
+  else{
+    alert("Ошибка при при входе")
+  }
 }
 
 function Login(){
