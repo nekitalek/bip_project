@@ -38,12 +38,14 @@ function GetEvents(){
       return res;
    };
 
+   const flatten = require('flat').flatten;
+   console.log(flatten(event_list))
     var out = '';
     for (var key in event_list){
       var participants = '';
-      for (var participant in event_list[key].participant){
+      for (var key2 in event_list[key].participant){
         console.log(participant)
-        participants += participant.username 
+        participants += event_list[key].participant.username 
         
       }
 
