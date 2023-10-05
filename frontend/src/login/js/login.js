@@ -38,12 +38,8 @@ alert("Запрос не удался");
       var fa_code = document.getElementById("factor").value;
       if(fa_code){
           fa2POST(fa_code)
-          
-            
       }
       else alert("please enter the number")
-
-
 }
 
 const btnSend2FA = document.querySelector('btn-send-2fa')
@@ -64,21 +60,16 @@ function fa2POST(fa_code){
       "device": "windows"
     });
   xhr.onload = () => {
-      if (xhr.readyState == 4 && xhr.status == 201) {
-          console.log(JSON.parse(xhr.responseText));
-      } else {
-          console.log(`Error: ${xhr.status}`);
-      }
+    var jsonResponse = JSON.parse(xhr.responseText);
+    localStorage.setItem('auth_token',jsonResponse["auth_token"]);
+    if (xhr.status = 200){
+      window.location.href = "https://51.250.24.31/main/main.html"; 
+    }
+    else{
+      alert("Ошибка при при входе")
+    }
   };
   xhr.send(body);
-  var jsonResponse = JSON.parse(xhr.responseText);
-  localStorage.setItem('auth_token',jsonResponse["auth_token"]);
-  if (xhr.status = 200){
-    window.location.href = "https://51.250.24.31/main/main.html"; 
-  }
-  else{
-    alert("Ошибка при при входе")
-  }
 }
 
 function Login(){
