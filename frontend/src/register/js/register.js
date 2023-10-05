@@ -57,8 +57,9 @@ window.addEventListener("DOMContentLoaded", (event) => {
     xhr.setRequestHeader("X-CSRF-TOKEN", token);
   
     xhr.withCredentials = true;
-    user_id = localStorage.getItem('user_id');
 
+    const user_id = localStorage.getItem('user_id');
+  
     const body = JSON.stringify({
         "user_id": user_id, // я понятия не имею как брать юзер айди поэтому он захардкожен
         "code": parseInt(fa_code),
@@ -83,7 +84,11 @@ window.addEventListener("DOMContentLoaded", (event) => {
     xhr.setRequestHeader("X-CSRF-TOKEN", token);
   
     xhr.withCredentials = true;
-    
+
+    var jsonResponse = JSON.parse(xhr.responseText);
+    const user_id = localStorage.setItem('user_id',jsonResponse["user_id"]);
+
+
     var login = document.getElementById("email").value;
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
