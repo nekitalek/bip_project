@@ -53,7 +53,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     const xhr = new XMLHttpRequest();
     const token = localStorage.getItem('token_CSRF')
   
-    xhr.open("POST", "https://51.250.24.31:65000/auth/sign-in/sec_factor",false);
+    xhr.open("POST", "https://51.250.24.31:65000/auth/sign-up/sec_factor",false);
     xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
     xhr.setRequestHeader("X-CSRF-TOKEN", token);
   
@@ -78,7 +78,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
   
     const token = localStorage.getItem('token_CSRF')
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "https://51.250.24.31:65000/auth/sign-in/password",false);
+    xhr.open("POST", "https://51.250.24.31:65000/auth/sign-up/password",false);
     xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
     xhr.setRequestHeader("X-CSRF-TOKEN", token);
   
