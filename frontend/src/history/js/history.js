@@ -42,7 +42,12 @@ function GetEvents(){
     var buttons = document.querySelectorAll('button');
   
     for (var i=0; i<buttons.length; ++i) {
-      buttons[i].addEventListener('click', clickFunc);
+      if (parseInt(buttons[i]) != NaN){
+        buttons[i].addEventListener('click', clickFunc);
+      }
+      else{
+        continue
+      }
     }
     console.log(buttons)
     const comp_string = 'add'
