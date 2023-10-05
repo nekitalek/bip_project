@@ -57,9 +57,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
     xhr.setRequestHeader("X-CSRF-TOKEN", token);
   
     xhr.withCredentials = true;
-  
+    user_id = localStorage.getItem('user_id');
+
     const body = JSON.stringify({
-        "user_id": 1, // я понятия не имею как брать юзер айди поэтому он захардкожен
+        "user_id": user_id, // я понятия не имею как брать юзер айди поэтому он захардкожен
         "code": parseInt(fa_code),
         "device": "windows"
       });
@@ -74,7 +75,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
   }
   
   function Register(){
-    openModal()
+    console.log("Запрос отправлен")
     const token = localStorage.getItem('token_CSRF')
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "https://51.250.24.31:65000/auth/sign-up/password",false);
@@ -104,4 +105,5 @@ window.addEventListener("DOMContentLoaded", (event) => {
       }
     };
     xhr.send(body);
+    openModal()
   }
