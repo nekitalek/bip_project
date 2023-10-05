@@ -38,8 +38,14 @@ window.addEventListener("DOMContentLoaded", (event) => {
         var fa_code = document.getElementById("factor").value;
         if(fa_code){
             fa2POST(fa_code)
-            //if (fa2POST){ // не знаю что возвращает 2фа но выполнение входа в случае успеха
-            //}
+            var jsonResponse = JSON.parse(xhr.responseText);
+            
+            if (jsonResponse["status"] = 'ok'){
+              window.location.href = "https://51.250.24.31/login/login.html"; 
+            }
+            else{
+              alert("Ошибка при регистрации")
+            }
         }
         else alert("please enter the number")
   
