@@ -39,7 +39,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
         if(fa_code){
             fa2POST(fa_code)
             //if (fa2POST){ // не знаю что возвращает 2фа но выполнение входа в случае успеха
-            Register()
             //}
         }
         else alert("please enter the number")
