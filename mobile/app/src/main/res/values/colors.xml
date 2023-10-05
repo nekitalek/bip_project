@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="green">#00FF00</color>
+    <color name="red">#FF0000</color>
+    <color name="ripple_color_effect_sign_in">#233AB8</color>
+    <color name="btn_sign_in">#AF3C3C</color>
+    <color name="btn_sign_in_stroke">#A62626</color>
+    <color name="ripple_color_effect_register">#233AB8</color>
+    <color name="btn_register">#AF3C3C</color>
+    <color name="btn_register_stroke">#A62626</color>
+</resources>

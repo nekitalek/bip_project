@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">BIP_JAVA</string>
+    <string name="app_in_name">BIP Project of TEAM</string>
+    <string name="logon_botton">Version 1.0</string>
+    <string name="btn_SignIn">Sign In</string>
+    <string name="btn_Register">Register</string>
+    <string name="app_name_author">Dedov N.V.\nInanmasov H.A.\nMarzoev A.A.\nSoldatkin N.V.\nFedorov D.M.</string>
+    <string name="registration">Registration</string>
+    <string name="sign_in">Sign In</string>
+</resources>

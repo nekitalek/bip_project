@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/pic_1"
+    android:id="@+id/root_element"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/hind_siliguri_medium"
+            android:text="@string/app_in_name"
+            android:textAlignment="center"
+            android:textColor="#46C7DC"
+            android:textSize="35sp" />
+
+        <TextView
+            android:layout_width="125dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:fontFamily="@font/hind_siliguri_medium"
+            android:text="@string/app_name_author"
+            android:textAlignment="center"
+            android:textColor="#C1BFC8"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/text_botton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="15dp"
+        android:text="@string/logon_botton"
+        android:textAlignment="center"
+        android:textColor="#C1BFC8"
+        android:fontFamily="@font/hind_siliguri_medium"
+        android:textSize="12sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:weightSum="2"
+        android:layout_above="@+id/text_botton"
+        android:layout_margin="20dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnSignIn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="6dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_sign_in"
+            android:fontFamily="@font/hind_siliguri_medium"
+            android:text="@string/btn_SignIn"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_register"
+            android:fontFamily="@font/hind_siliguri_medium"
+            android:text="@string/btn_Register"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+</RelativeLayout>
