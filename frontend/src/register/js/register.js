@@ -1,7 +1,7 @@
 window.addEventListener("DOMContentLoaded", (event) => {
     const el = document.getElementById('send_form');
     if (el) {
-      el.addEventListener('click', openModal);
+      el.addEventListener('click', Register);
     }
   });
   
@@ -75,7 +75,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
   }
   
   function Register(){
-  
+    openModal()
     const token = localStorage.getItem('token_CSRF')
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "https://51.250.24.31:65000/auth/sign-up/password",false);
