@@ -1,13 +1,13 @@
 https:
-    host: "158.160.27.251"
-    port: "443"
+    host: "51.250.24.31"
+    port: "65000"
     cert: ".certificate//cert.pem"
     key: ".certificate//key.pem"
 
 db:
     username: "postgres"
     host: "localhost"
-    port: "5432"
+    port: "5436"
     dbname: "postgres"
     sslmode: "disable"
 
