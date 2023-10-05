@@ -27,19 +27,18 @@ function GetEvents(){
     alert("Запрос не удался");
     }
 
-    var flattenJSON = (event_list, res = {}, extraKey = '') => {
-      for(key in obj){
-         if(typeof obj[key] !== 'object'){
-            res[extraKey + key] = obj[key];
+    const flattenJSON = (event_list, res = {}, extraKey = '') => {
+      for(key in event_list){
+         if(typeof event_list[key] !== 'object'){
+            res[extraKey + key] = event_list[key];
          }else{
-            flattenJSON(obj[key], res, `${extraKey}${key}.`);
+            flattenJSON(event_list[key], res, `${extraKey}${key}.`);
          };
       };
       return res;
    };
+   console.log(flattenJSON(event_list))
 
-   const flatten = require('flat').flatten;
-   console.log(flatten(event_list))
     var out = '';
     for (var key in event_list){
       var participants = '';
