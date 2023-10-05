@@ -49,11 +49,11 @@ function GetEvents(){
       }
     }
     
-    const comp_string = 'add'
+    
     function clickFunc() {
       var str = this.id
-      str = str.substring(2)
-      if(comp_string < str){
+      str = str.substring(2,2)
+      if(str = 'a'){
         JoinEvent(str); 
       }
       else{
