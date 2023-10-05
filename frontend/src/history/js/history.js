@@ -42,10 +42,9 @@ function GetEvents(){
 
     var out = '';
     for (var key in event_list){
-      var participants = '';
+      var participants = event_list[key].participant;
+      console.log(participants)
       for (var key2 in event_list[key].participant){
-        console.log(event_list[key][key2].username )
-        participants += event_list[key][key2].username 
         
       }
 
