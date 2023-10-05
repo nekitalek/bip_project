@@ -61,7 +61,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     const user_id = localStorage.getItem('user_id');
   
     const body = JSON.stringify({
-        "user_id": user_id, // я понятия не имею как брать юзер айди поэтому он захардкожен
+        "user_id": parseInt(user_id), // я понятия не имею как брать юзер айди поэтому он захардкожен
         "code": parseInt(fa_code),
         "device": "windows"
       });
@@ -84,7 +84,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     xhr.setRequestHeader("X-CSRF-TOKEN", token);
   
     xhr.withCredentials = true;
-    
+
     var login = document.getElementById("email").value;
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
