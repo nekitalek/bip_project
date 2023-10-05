@@ -84,6 +84,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
   
     xhr.withCredentials = true;
   
+    var jsonResponse = JSON.parse(xhr.responseText);
+    console.log(jsonResponse["user_id"]);
+    localStorage.setItem('user_id',jsonResponse["user_id"]);
+
     var login = document.getElementById("email").value;
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
