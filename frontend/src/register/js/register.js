@@ -84,11 +84,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     xhr.setRequestHeader("X-CSRF-TOKEN", token);
   
     xhr.withCredentials = true;
-
-    var jsonResponse = JSON.parse(xhr.responseText);
-    const user_id = localStorage.setItem('user_id',jsonResponse["user_id"]);
-
-
+    
     var login = document.getElementById("email").value;
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;
@@ -106,5 +102,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
       }
     };
     xhr.send(body);
+    var jsonResponse = JSON.parse(xhr.responseText);
+    const user_id = localStorage.setItem('user_id',jsonResponse["user_id"]);
     openModal()
   }
