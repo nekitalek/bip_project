@@ -38,26 +38,28 @@ function GetEvents(){
       out += '<a href="#" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">  <div class="flex flex-col justify-between p-4 leading-normal"><h4 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Описание мероприятия ' + event_list[key].description +'</h4><p id="time_start" class="mb-3 font-normal text-gray-700 dark:text-gray-400">Время начала: '+ event_list[key].time_start +'</p><p id="time_end" class="mb-3 font-normal text-gray-700 dark:text-gray-400">Время окончания: '+ event_list[key].time_end +'</p><p id="place" class="mb-3 font-normal text-gray-700 dark:text-gray-400">Адрес: '+ event_list[key].place +'</p><p id="game" class="mb-3 font-normal text-gray-700 dark:text-gray-400">Игра: '+ event_list[key].game +'</p><p id="participant" class="mb-3 font-normal text-gray-700 dark:text-gray-400">Участники: '+ all_part +'</p><button id="'+ event_list[key].event_items_id +'_accept_event" type="button" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Записаться</button><button id="'+ event_list[key].event_items_id +'_decline_event" type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Покинуть мероприятие</button></div></a>';
     }
     document.getElementById('event_grid').innerHTML = out;
+
+    window.addEventListener("DOMContentLoaded", (event) => {
+      var buttons = document.querySelectorAll('button');
+    
+      for (var i=0; i<buttons.length; ++i) {
+        buttons[i].addEventListener('click', clickFunc);
+      }
+    
+      const comp_string = 'add'
+      function clickFunc() {
+        if(comp_string < comp_string){
+          JoinEvent(this.id); 
+        }
+        else{
+          LeftEvent(this.id)
+        }
+      }
+    });
 }
 
 
-window.addEventListener("DOMContentLoaded", (event) => {
-  var buttons = document.querySelectorAll('button');
 
-  for (var i=0; i<buttons.length; ++i) {
-    buttons[i].addEventListener('click', clickFunc);
-  }
-
-  const comp_string = 'add'
-  function clickFunc() {
-    if(comp_string < comp_string){
-      JoinEvent(this.id); 
-    }
-    else{
-      LeftEvent(this.id)
-    }
-  }
-});
 
 
 function JoinEvent(button_id){
