@@ -74,7 +74,7 @@ function JoinEvent(button_id){
     const auth_token = localStorage.getItem('auth_token');
     const user_id = localStorage.getItem('user_id');
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "https://51.250.24.31:65000/api/invitation/"+ event_id.toString() + '/',false);
+    xhr.open("POST", "https://51.250.24.31:65000/api/invitation/"+ event_id.toString(),false);
     xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
     xhr.setRequestHeader("X-CSRF-TOKEN", token);
     xhr.setRequestHeader("Authorization", "Bearer " + auth_token);
@@ -104,7 +104,7 @@ function LeftEvent(button_id){
   const auth_token = localStorage.getItem('auth_token');
   const user_id = localStorage.getItem('user_id');
   const xhr = new XMLHttpRequest();
-  xhr.open("DELETE", "https://51.250.24.31:65000/api/invitation/"+ event_id.toString() + '/',false);
+  xhr.open("DELETE", "https://51.250.24.31:65000/api/invitation/"+ event_id.toString(),false);
   xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
   xhr.setRequestHeader("X-CSRF-TOKEN", token);
   xhr.setRequestHeader("Authorization", "Bearer " + auth_token);
