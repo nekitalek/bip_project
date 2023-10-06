@@ -10,8 +10,8 @@ const xhr = new XMLHttpRequest();
     xhr.setRequestHeader("Authorization", "Bearer " + auth_token);
     xhr.withCredentials = true;
     xhr.send();
-    
+
     var jsonResponse = JSON.parse(xhr.responseText);
 
-    document.getElementById('username').innerHTML = jsonResponse["username"];
-    document.getElementById('email_setting').innerHTML = jsonResponse["login"];
+    document.getElementById('username').setText = jsonResponse["username"];
+    document.getElementById('email_setting').setText = jsonResponse["login"];
