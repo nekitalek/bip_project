@@ -88,6 +88,9 @@ function Login(){
   // отправляем запрос
   xhr.send(body);
 
+  var jsonResponse = JSON.parse(xhr.responseText); // парсим токен полученный в ответ от сервера
+  localStorage.setItem('auth_token',jsonResponse["autho_token"]); // кладем токен в локальное хранилище
+
   // открываем модальное окно ввода кода подтверждения
   openModal()
 }
