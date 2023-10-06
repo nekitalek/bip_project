@@ -39,8 +39,8 @@ function GetEvent(id){
   var event_list = JSON.parse(xhr.responseText); // парсим список событий полученный в ответ от сервера
   
   const temp_id = parseInt(localStorage.getItem('user_id'));
-  for (var key2 in participants){
-    if (temp_id == participants[key2].user_id){
+  for (var key2 in event_list[0].participant){
+    if (temp_id == event_list[0].participant[key2].user_id){
       return 'true'
     }
 }
