@@ -55,11 +55,17 @@ function sendTokenToServer(currentToken) {
     if (!isTokenSentToServer(currentToken)) {
         console.log('Отправка токена на сервер...');
 
-        var url = 'https://51.250.24.31:65000/api/push_notification'; // адрес скрипта на сервере который сохраняет ID устройства
-        $.post(url, {
-            token: currentToken
-        });
-
+        const xhr = new XMLHttpRequest();
+        const token = localStorage.getItem('token_CSRF')
+        xhr.open("POST", "https://51.250.24.31:65000/api/push_notification",false);
+        xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+        xhr.setRequestHeader("X-CSRF-TOKEN", token);
+        xhr.withCredentials = true;
+      
+        const body = JSON.stringify({
+            "token": currentToken
+          });
+        xhr.send(body);
         setTokenSentToServer(currentToken);
     } else {
         console.log('Токен уже отправлен на сервер.');
