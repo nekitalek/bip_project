@@ -18,6 +18,7 @@ const xhr = new XMLHttpRequest();
         if (i==0){
         input.value=jsonResponse["username"];
         }
+        i+=1
       }
     // console.log(document)
     // document.getElementsByTagName("input")[0].value = jsonResponse["username"];
