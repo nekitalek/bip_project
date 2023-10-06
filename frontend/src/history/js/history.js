@@ -30,7 +30,7 @@ function ParseEvents(event_list){
   for (var key in event_list){
     var participants = event_list[key].participant;
     var all_part = ''
-    const temp_id = localStorage.getItem('user_id');
+    const temp_id = parseInt(localStorage.getItem('user_id'));
 
     localStorage.setItem('flag_part',false);
     for (var key2 in participants){
@@ -63,7 +63,7 @@ function clickFunc() {
   var str = this.id
   console.log(this.id)
   var str1 = str.substring(3,5)
-  console.log(str1)
+  //console.log(str1)
   if(str1 == 'ac'){
     JoinEvent(str); 
   }
