@@ -14,7 +14,7 @@ const xhr_get = new XMLHttpRequest();
     if(xhr.status!=200){
         window.location.href = "https://51.250.24.31/login/"; 
     }
-    var jsonResponse = JSON.parse(xhr_get.responseText);
+    var jsonResponse = JSON.parse(xhr.responseText);
 
     document.getElementById("username").value = jsonResponse["username"];
     document.getElementById("email_setting").value = jsonResponse["login"];
