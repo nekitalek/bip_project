@@ -30,7 +30,14 @@ function ParseEvents(event_list){
   for (var key in event_list){
     var participants = event_list[key].participant;
     var all_part = ''
+    const temp_id = localStorage.getItem('user_id');
+
+    localStorage.setItem('flag_part',false);
     for (var key2 in participants){
+      if (temp_id==participants[key2].username)
+      {
+        localStorage.setItem('flag_part',true);
+      }
       all_part += participants[key2].username
       all_part += ', '
     }
@@ -67,7 +74,11 @@ function clickFunc() {
 
 //функция присоединения к событию
 function JoinEvent(button_id){
-
+    const flag_part = localStorage.getItem('flag_part');
+    if (flag_part==true){
+      alert('Вы уже записаны!')
+      return
+    }
     //получение айди события
     var event_id = parseInt(button_id)
 
@@ -75,7 +86,7 @@ function JoinEvent(button_id){
     const token = localStorage.getItem('token_CSRF');
     const auth_token = localStorage.getItem('auth_token');
     const user_id = parseInt(localStorage.getItem('user_id'));
-
+    
     //создаем новый запрос на присоединение к событию
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "https://51.250.24.31:65000/api/invitation/",false);
@@ -96,7 +107,10 @@ function JoinEvent(button_id){
 
 //функция подания события
 function LeftEvent(button_id){
-
+  if (flag_part==false){
+    alert('Вы не записаны на это событие!')
+    return
+  }
   //получение айди события
   var event_id = parseInt(button_id)
 
