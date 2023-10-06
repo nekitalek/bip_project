@@ -13,6 +13,7 @@ const xhr = new XMLHttpRequest();
 
     var jsonResponse = JSON.parse(xhr.responseText);
     var in_var = document.getElementById('username').value = jsonResponse["username"];
+    console.log(document.querySelector('[name="nameuser"]'))
     console.log(in_var)
     // for (let input1 of in_var) {
     //     console.log(input1)
