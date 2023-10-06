@@ -54,6 +54,7 @@ function ParseEvents(event_list){
 //функция выбора присоединиться/покинуть
 function clickFunc() {
   var str = this.id
+  console.log(this.id)
   var str1 = str.substring(2,4)
   console.log(str1)
   if(str1 == '_a'){
