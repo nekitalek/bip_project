@@ -15,3 +15,5 @@ const xhr = new XMLHttpRequest();
 
     document.getElementById("username").value = jsonResponse["username"];
     document.getElementById("email_setting").value = jsonResponse["login"];
+    document.getElementById("win_name").value = jsonResponse["username"];
+    document.getElementById("win_email").value = jsonResponse["login"];
