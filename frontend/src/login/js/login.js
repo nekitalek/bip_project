@@ -15,26 +15,7 @@ function closeModal() {
   }
 
 function verify2fa(){
-const requestURL = 'https://51.250.24.31:65000/CSRF'
 
-var xhr = new XMLHttpRequest()
-xhr.open('GET', requestURL, false);
-xhr.withCredentials = true;
-try {
-xhr.send();
-if (xhr.status != 200) {
-  console.log('Ошибка');
-} else {
-  var jsonResponse = JSON.parse(xhr.responseText);
-  console.log(jsonResponse["token_CSRF"]);
-  localStorage.setItem('token_CSRF',jsonResponse["token_CSRF"]);
-  //если нужно использовать в другом скрипке, то сохранить в память браузера
-  //localStorage.setItem(jsonResponse["token_CSRF"]);
-  //Для получение .getItem
-}
-} catch(err) {
-alert("Запрос не удался");
-}
       var fa_code = document.getElementById("factor").value;
       if(fa_code){
           fa2POST(fa_code)
@@ -73,7 +54,26 @@ function fa2POST(fa_code){
 }
 
 function Login(){
+    const requestURL = 'https://51.250.24.31:65000/CSRF'
 
+    var xhr = new XMLHttpRequest()
+    xhr.open('GET', requestURL, false);
+    xhr.withCredentials = true;
+    try {
+    xhr.send();
+    if (xhr.status != 200) {
+      console.log('Ошибка');
+    } else {
+      var jsonResponse = JSON.parse(xhr.responseText);
+      console.log(jsonResponse["token_CSRF"]);
+      localStorage.setItem('token_CSRF',jsonResponse["token_CSRF"]);
+      //если нужно использовать в другом скрипке, то сохранить в память браузера
+      //localStorage.setItem(jsonResponse["token_CSRF"]);
+      //Для получение .getItem
+    }
+    } catch(err) {
+    alert("Запрос не удался");
+    }
   const token = localStorage.getItem('token_CSRF')
   const xhr = new XMLHttpRequest();
   xhr.open("POST", "https://51.250.24.31:65000/auth/sign-in/password",false);
