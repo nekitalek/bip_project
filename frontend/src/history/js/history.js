@@ -1,5 +1,5 @@
 window.addEventListener("DOMContentLoaded", (event) => {  // ожидание полной загрузки страницы и добавление листенера на кнопку
-  document.getElementById('send_form').addEventListener('click', GetEvents); // вызов функции входа по нажатию
+  document.getElementById('refresh').addEventListener('click', GetEvents); // вызов функции входа по нажатию
 });
 
 // функция отправки запроса на получение списка событий
