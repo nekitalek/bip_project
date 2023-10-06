@@ -104,7 +104,8 @@ window.addEventListener("DOMContentLoaded", (event) => {  // ожидание п
     // получаем в ответе user_id и добавляем его в локальное хранилище
     if (xhr.status == 200){
       var jsonResponse = JSON.parse(xhr.responseText); // парсим токен полученный в ответ от сервера
-      localStorage.setItem('auth_token',jsonResponse["auth_token"]); // кладем токен в локальное хранилище 
+      localStorage.setItem('auth_token',jsonResponse["auth_token"]);
+      localStorage.setItem('user_id',jsonResponse["user_id"]); // кладем токен в локальное хранилище 
     }
     else{
       alert(jsonResponse)
