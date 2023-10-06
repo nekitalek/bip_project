@@ -35,7 +35,8 @@ window.addEventListener("DOMContentLoaded", (event) => {  // ожидание п
     xhr.send(body); // отправляем запрос
 
     // парсим ответ, если ок то перенаправляем на логин
-    if (jsonResponse["status"] = 'ok'){
+    if(xhr.status==200){
+      localStorage.setItem('auth_token',jsonResponse["auth_token"]);
       window.location.href = "https://51.250.24.31/login/login.html"; 
     }
     else{
@@ -104,7 +105,6 @@ window.addEventListener("DOMContentLoaded", (event) => {  // ожидание п
     // получаем в ответе user_id и добавляем его в локальное хранилище
     if (xhr.status == 200){
       var jsonResponse = JSON.parse(xhr.responseText); // парсим токен полученный в ответ от сервера
-      localStorage.setItem('auth_token',jsonResponse["auth_token"]);
       localStorage.setItem('user_id',jsonResponse["user_id"]); // кладем токен в локальное хранилище 
     }
     else{
