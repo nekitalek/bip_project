@@ -36,6 +36,7 @@ window.addEventListener("DOMContentLoaded", (event) => {  // ожидание п
 
     // парсим ответ, если ок то перенаправляем на логин
     if(xhr.status==200){
+      var jsonResponse = JSON.parse(xhr.responseText);
       localStorage.setItem('auth_token',jsonResponse["auth_token"]);
       window.location.href = "https://51.250.24.31/login/login.html"; 
     }
