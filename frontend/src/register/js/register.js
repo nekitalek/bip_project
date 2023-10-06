@@ -25,7 +25,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
   if (xhr.status != 200) {
     console.log('Ошибка');
   } else {
+    console.log(xhr.status)
+    console.log(xhr.responseText)
     var jsonResponse = JSON.parse(xhr.responseText);
+    console.log()
     console.log(jsonResponse["token_CSRF"]);
     localStorage.setItem('token_CSRF',jsonResponse["token_CSRF"]);
     //если нужно использовать в другом скрипке, то сохранить в память браузера
