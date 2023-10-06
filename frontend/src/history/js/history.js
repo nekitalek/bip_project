@@ -107,15 +107,15 @@ function LeftEvent(button_id){
 
   //создаем новый запрос на покидание события
   const xhr = new XMLHttpRequest();
-  xhr.open("DELETE", "https://51.250.24.31:65000/api/invitation/" + event_id,false);
+  xhr.open("DELETE", "https://51.250.24.31:65000/api/invitation/",false);
   xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
   xhr.setRequestHeader("X-CSRF-TOKEN", token);
   xhr.setRequestHeader("Authorization", "Bearer " + auth_token);
   xhr.withCredentials = true;
 
   const body = JSON.stringify({
-      "event_id": event_id,
       "user_id": user_id,
+      "event_id": event_id
   });
 
   // отправляем запрос
