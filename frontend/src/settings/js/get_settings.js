@@ -14,8 +14,9 @@ const xhr = new XMLHttpRequest();
     var jsonResponse = JSON.parse(xhr.responseText);
     var in_var = document.getElementsByTagName("input")
 
-    for (let input of in_var) {
-        input.value=jsonResponse["username"];
+    for (let input1 of in_var) {
+        console.log(input1)
+        input1.value=jsonResponse["username"];
         
     }
     // console.log(document)
