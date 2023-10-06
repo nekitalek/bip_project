@@ -2,8 +2,8 @@ window.addEventListener("DOMContentLoaded", (event) => {  // ожидание п
   document.getElementById('send_form').addEventListener('click', CreateEvent); // вызов функции проверки пароля по нажатию
 });
   
+  // функция отправки запроса на создание ивента
   function CreateEvent(){
-  
     //получаем данные из локального хранилища
     const token = localStorage.getItem('token_CSRF')
     const auth_token = localStorage.getItem('auth_token');
@@ -32,7 +32,7 @@ window.addEventListener("DOMContentLoaded", (event) => {  // ожидание п
         "description": description,
         "public": public
     });
-    
+
     // отправляем запрос
     xhr.send(body);
   }
