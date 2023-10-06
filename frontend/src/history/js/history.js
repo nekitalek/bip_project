@@ -22,6 +22,32 @@ function GetEvents(){
   ParseEvents(event_list) // вызываем парсинг
 }
 
+function GetEvent(id){
+
+  // получения данных из локального хранилища
+  const token = localStorage.getItem('token_CSRF') // получения токена из локального хранилища
+  const auth_token = localStorage.getItem('auth_token'); // получение auth_token из локального хранилища
+  
+  //создаем новый запрос на регистрацию
+  const xhr = new XMLHttpRequest();
+  xhr.open("GET", "https://51.250.24.31:65000/api/event/"+id,false);
+  xhr.setRequestHeader("X-CSRF-TOKEN", token);
+  xhr.setRequestHeader("Authorization", "Bearer " + auth_token);
+  xhr.withCredentials = true;
+
+  xhr.send(); // отправляем запрос
+  var event_list = JSON.parse(xhr.responseText); // парсим список событий полученный в ответ от сервера
+  
+  const temp_id = parseInt(localStorage.getItem('user_id'));
+  for (var key2 in participants){
+    if (temp_id == participants[key2].user_id){
+      return 'true'
+    }
+}
+return 'false'
+  
+}
+
 //функция обработки и вывода списка событий
 function ParseEvents(event_list){
 
@@ -32,11 +58,11 @@ function ParseEvents(event_list){
     var all_part = ''
     const temp_id = parseInt(localStorage.getItem('user_id'));
 
-    localStorage.setItem('flag_part',false);
+    localStorage.setItem('flag_part',"false");
     for (var key2 in participants){
       if (temp_id==participants[key2].user_id)
       {
-        localStorage.setItem('flag_part',true);
+        localStorage.setItem('flag_part',"true");
       }
       all_part += participants[key2].username
       all_part += ', '
@@ -74,13 +100,18 @@ function clickFunc() {
 
 //функция присоединения к событию
 function JoinEvent(button_id){
-    const flag_part = localStorage.getItem('flag_part');
-    if (flag_part=='true'){
-      alert('Вы уже записаны!')
-      return
-    }
+    // const flag_part = localStorage.getItem('flag_part');
+    // if (flag_part=="true"){
+    //   alert('Вы уже записаны!')
+    //   return
+    // }
     //получение айди события
     var event_id = parseInt(button_id)
+    res = GetEvent(event_id.toString())
+    if (res=='true'){
+      alert('Вы уже записаны на это событие!')
+      return
+    }
 
     // получения данных из локального хранилища
     const token = localStorage.getItem('token_CSRF');
@@ -107,12 +138,18 @@ function JoinEvent(button_id){
 
 //функция подания события
 function LeftEvent(button_id){
-  if (flag_part=='false'){
-    alert('Вы не записаны на это событие!')
-    return
-  }
+  // const flag_part = localStorage.getItem('flag_part');
+  // if (flag_part=="false"){
+  //   alert('Вы не записаны на это событие!')
+  //   return
+  // }
   //получение айди события
   var event_id = parseInt(button_id)
+  res = GetEvent(event_id.toString())
+  if (res=='false'){
+    alert('Вы не были записаны на это событие!')
+    return
+  }
 
   // получения данных из локального хранилища
   const token = localStorage.getItem('token_CSRF');
