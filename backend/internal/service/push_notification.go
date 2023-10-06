@@ -50,7 +50,7 @@ func (s *PushNotificationService) SendPushNotification(event_id int) error {
 	// log.Println(string(bytesRepresentation))
 
 	req, err := http.NewRequest("POST", "https://fcm.googleapis.com/fcm/send", bytes.NewBuffer(bytesRepresentation))
-	req.Header.Add("Authorization", "Bearer "+os.Getenv("FIREBASE_AUTH_KEY"))
+	req.Header.Add("Authorization", "Bearer "+os.Getenv("AAAA8QK0YKY:APA91bE30uRqIgS1OzNsz6wEEcJRaPl6yw7hfhFWsOhFFe-vb8q3_deqokyXi7Zx0p1y5Ijc2dVNUb1XpM94P5a42ndCwr9kZYfEvCSmsZkrkGks3mlsFmUA6z7h2M-W-Y3Rtj2-N2aZ"))
 	req.Header.Set("Content-Type", "application/json")
 
 	resp, err := client.Do(req)

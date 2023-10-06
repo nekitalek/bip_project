@@ -15,7 +15,7 @@ services:
       - SALT=uh3yf8r7g17312341234d
       - SMTP_PASSWORD=drYk8ykHR399
       - JwT_SINGING_KEY=ak*sdhf$187y@foiu1e
-      - FIREBASE_AUTH_KEY=AAAABVr7Cpc:APA91bEw3BFcPxc_DVcAQJH1hSpH7bfACvFyi4lXM4jt6uTcgpP0fsffpsnU0AQaZV7s1kkprCqCl7wHxcQyEfyZYqpvzgXscN4MOsbjeabrXBwr-QIQqqhgIdNA9NRY2ARwqniUZLjf
+      - FIREBASE_AUTH_KEY=AAAA8QK0YKY:APA91bE30uRqIgS1OzNsz6wEEcJRaPl6yw7hfhFWsOhFFe-vb8q3_deqokyXi7Zx0p1y5Ijc2dVNUb1XpM94P5a42ndCwr9kZYfEvCSmsZkrkGks3mlsFmUA6z7h2M-W-Y3Rtj2-N2aZ
 
   db:
     restart: always
