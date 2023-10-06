@@ -30,7 +30,7 @@ function GetEvent(id){
   
   //создаем новый запрос на регистрацию
   const xhr = new XMLHttpRequest();
-  xhr.open("GET", "https://51.250.24.31:65000/api/event?event_items_id="+id+"/",false);
+  xhr.open("GET", "https://51.250.24.31:65000/api/event/?event_items_id="+id,false);
   xhr.setRequestHeader("X-CSRF-TOKEN", token);
   xhr.setRequestHeader("Authorization", "Bearer " + auth_token);
   xhr.withCredentials = true;
