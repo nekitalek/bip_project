@@ -16,9 +16,12 @@ if ('Notification' in window) {
 
     // по клику, запрашиваем у пользователя разрешение на уведомления
     // и подписываем его
-    $('#subscribe').on('click', function () {
-        subscribe();
-    });
+    window.addEventListener("DOMContentLoaded", (event) => {
+        const el = document.getElementById('subscribe');
+        if (el) {
+          el.addEventListener('click', subscribe);
+        }
+      });
 }
 
 function subscribe() {
