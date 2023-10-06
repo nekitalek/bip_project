@@ -12,9 +12,9 @@ const xhr = new XMLHttpRequest();
     xhr.send();
 
     var jsonResponse = JSON.parse(xhr.responseText);
-    console.log(document.querySelector('[name="nameuser"]'))
-    var in_var = document.getElementById("username").value = jsonResponse["username"];
     
+    document.getElementById("username").value = jsonResponse["username"];
+    document.getElementById("email_setting").value = jsonResponse["email"];
     // for (let input1 of in_var) {
     //     console.log(input1)
     //     input1.value=jsonResponse["username"];
