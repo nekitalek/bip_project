@@ -35,11 +35,13 @@ function fa2POST(){
   xhr.send(body); // отправляем запрос
 
   // парсим ответ, если ок то перенаправляем на логин
-  if (jsonResponse["status"] = 'ok'){
+  if (xhr.status == 200){
+    var jsonResponse = JSON.parse(xhr.responseText); // парсим токен полученный в ответ от сервера
+    localStorage.setItem('auth_token',jsonResponse["auth_token"]); // кладем токен в локальное хранилище
     window.location.href = "https://51.250.24.31/main/main.html"; 
   }
   else{
-    alert("Ошибка при регистрации")
+    alert(jsonResponse)
   }
 }
 
@@ -67,7 +69,7 @@ function Login(){
   GetCSRF() // вызываем функцию получения токена чтобы использовать его далее
 
   const token = localStorage.getItem('token_CSRF') // получения токена из локального хранилища
-  const user_id = localStorage.getItem('user_id'); // получение user_id из локального хранилища
+  //const user_id = localStorage.getItem('user_id'); // получение user_id из локального хранилища
 
   //создаем новый запрос на регистрацию
   var xhr = new XMLHttpRequest()
@@ -88,9 +90,12 @@ function Login(){
   // отправляем запрос
   xhr.send(body);
 
-  var jsonResponse = JSON.parse(xhr.responseText); // парсим токен полученный в ответ от сервера
-  localStorage.setItem('auth_token',jsonResponse["autho_token"]); // кладем токен в локальное хранилище
-
+  if (jsonResponse["status"] = 'ok'){
+  localStorage.setItem('user_id',jsonResponse["user_id"]);
   // открываем модальное окно ввода кода подтверждения
   openModal()
+  }
+  else {
+    alert(jsonResponse);
+  }
 }
