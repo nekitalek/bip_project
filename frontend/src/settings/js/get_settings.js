@@ -12,13 +12,13 @@ const xhr = new XMLHttpRequest();
     xhr.send();
 
     var jsonResponse = JSON.parse(xhr.responseText);
-    var in_var = document.getElementsByTagName("input")
-
-    for (let input1 of in_var) {
-        console.log(input1)
-        input1.value=jsonResponse["username"];
+    var in_var = document.getElementById('username')
+    console.log(in_var)
+    // for (let input1 of in_var) {
+    //     console.log(input1)
+    //     input1.value=jsonResponse["username"];
         
-    }
+    // }
     // console.log(document)
     // document.getElementsByTagName("input")[0].value = jsonResponse["username"];
     // document.getElementsByTagName("input")[1].value = jsonResponse["login"];
