@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>Вход | BIPPROJECT</title>
+    <link rel="stylesheet" href="styles/main_page.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <section class="bg-gray-50 dark:bg-gray-900">
+        <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+            <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+                BIP PROJECT    
+            </a>
+            <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+                <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
+                    <h1 class="text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                        Добро пожаловать!
+                    </h1>
+                    <div class="flex flex-col space-y-4 md:space-y-6">
+                        <a href="/frontend/src/login/">
+                        <button  id="go_login" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Войти</button></a>
+                        <a href="/frontend/src/register/">
+                        <button id="go_register" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Зарегистрироваться</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </section>
+
+<!-- Модальное окно -->
+<div class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center hidden" id="2fa_modal">
+    <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
+    <div class="modal-container bg-white dark:bg-gray-900 w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+        <!-- Заголовок окна -->
+        <div class="modal-header p-3">
+            <h3 class="modal-title text-lg font-medium text-gray-700 dark:text-gray-400 text-center">Введите данные</h3>
+        </div>
+        <!-- Основное содержимое окна -->
+        <div class="modal-content py-4 text-left px-6">
+            <form>
+                <!-- Поле ввода из 6 ячеек -->
+                <div class="mb-4">
+                    <label class="block text-gray-700 dark:text-gray-300 font-bold mb-2" for="input-field">Введите код из письма:</label>
+                    <input class="shadow appearance-none border rounded w-full py-2 px-3 dark:text-gray-900 leading-tight focus:outline-none focus:shadow-outline dark:border-gray-500" id="factor" type="text" placeholder="Введите шестизначный код">
+                </div>
+                <!-- Кнопки -->
+                <div class="flex justify-end pt-2">
+                    <button class="px-4 bg-transparent p-3 rounded-lg text-indigo-500 dark:text-indigo-400 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-indigo-400 dark:hover:text-white mr-2" type="button" onclick="closeModal()">Отмена</button>
+                    <button id = "confirm_2fa" type="button" onclick="fa2POST()" class="btn-send-2fa modal-close px-4 bg-indigo-500 dark:bg-indigo-400 p-3 rounded-lg text-white hover:bg-indigo-400 dark:hover:bg-white">Отправить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="js/login.js"></script>
+</body>
+
