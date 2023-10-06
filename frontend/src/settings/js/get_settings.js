@@ -12,14 +12,6 @@ const xhr = new XMLHttpRequest();
     xhr.send();
 
     var jsonResponse = JSON.parse(xhr.responseText);
-    
+
     document.getElementById("username").value = jsonResponse["username"];
-    document.getElementById("email_setting").value = jsonResponse["email"];
-    // for (let input1 of in_var) {
-    //     console.log(input1)
-    //     input1.value=jsonResponse["username"];
-        
-    // }
-    // console.log(document)
-    // document.getElementsByTagName("input")[0].value = jsonResponse["username"];
-    // document.getElementsByTagName("input")[1].value = jsonResponse["login"];
+    document.getElementById("email_setting").value = jsonResponse["login"];
