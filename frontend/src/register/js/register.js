@@ -103,8 +103,13 @@ window.addEventListener("DOMContentLoaded", (event) => {  // ожидание п
     xhr.send(body); // отправляем запрос
 
     // получаем в ответе user_id и добавляем его в локальное хранилище
-    var jsonResponse = JSON.parse(xhr.responseText);
-    const user_id = localStorage.setItem('user_id',jsonResponse["user_id"]);
+    if (xhr.status == 200){
+      var jsonResponse = JSON.parse(xhr.responseText); // парсим токен полученный в ответ от сервера
+      localStorage.setItem('auth_token',jsonResponse["auth_token"]); // кладем токен в локальное хранилище 
+    }
+    else{
+      alert(jsonResponse)
+    };
 
     // открываем модальное окно ввода кода подтверждения
     openModal()
