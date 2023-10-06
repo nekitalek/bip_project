@@ -90,6 +90,7 @@ function Login(){
   // отправляем запрос
   xhr.send(body);
 
+  var jsonResponse = JSON.parse(xhr.responseText);
   if (jsonResponse["status"] = 'ok'){
   localStorage.setItem('user_id',jsonResponse["user_id"]);
   // открываем модальное окно ввода кода подтверждения
