@@ -87,9 +87,7 @@ function ParseEvents(event_list){
 //функция выбора присоединиться/покинуть
 function clickFunc() {
   var str = this.id
-  console.log(this.id)
   var str1 = str.substring(3,5)
-  //console.log(str1)
   if(str1 == 'ac'){
     JoinEvent(str); 
   }
@@ -112,6 +110,7 @@ function JoinEvent(button_id){
       alert('Вы уже записаны на это событие!')
       return
     }
+    else alert('Вы успешно записаны на событие.')
 
     // получения данных из локального хранилища
     const token = localStorage.getItem('token_CSRF');
@@ -150,6 +149,7 @@ function LeftEvent(button_id){
     alert('Вы не были записаны на это событие!')
     return
   }
+  else alert('Вы успешно покинули событие.')
 
   // получения данных из локального хранилища
   const token = localStorage.getItem('token_CSRF');

@@ -51,14 +51,13 @@ window.addEventListener("DOMContentLoaded", (event) => {  // ожидание п
       try {
       xhr.send();
       if (xhr.status != 200) { // отлов ошибки полученной при успешной отправке запроса
-        console.log('Ошибка');
+        console.log('Error');
       } else {
         var jsonResponse = JSON.parse(xhr.responseText); // парсим токен полученный в ответ от сервера
         localStorage.setItem('token_CSRF',jsonResponse["token_CSRF"]); // кладем токен в локальное хранилище
-        console.log("CSRF Token добавлен в локальное хранилице")
       }
       } catch(err) { // отлов ошибки при отправке запроса
-      alert("Запрос не удался");
+      alert("Запрос CSRF не удался.");
     }
   }
 
