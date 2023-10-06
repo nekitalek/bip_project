@@ -9,7 +9,8 @@ const xhr = new XMLHttpRequest();
     xhr.setRequestHeader("X-CSRF-TOKEN", token);
     xhr.setRequestHeader("Authorization", "Bearer " + auth_token);
     xhr.withCredentials = true;
-
+    xhr.send();
+    
     var jsonResponse = JSON.parse(xhr.responseText);
 
     document.getElementById('username').innerHTML = jsonResponse["username"];
