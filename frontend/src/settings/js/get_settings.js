@@ -13,5 +13,5 @@ const xhr = new XMLHttpRequest();
 
     var jsonResponse = JSON.parse(xhr.responseText);
 
-    document.getElementById('username').setText = jsonResponse["username"];
-    document.getElementById('email_setting').setText = jsonResponse["login"];
+    document.getElementsByTagName("input")[0].value = jsonResponse["username"];
+    document.getElementsByTagName("input")[1].value = jsonResponse["login"];
