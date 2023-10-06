@@ -56,10 +56,10 @@ function clickFunc() {
   var str = this.id
   var str1 = str.substring(2,4)
   console.log(str1)
-  if(str1 == 'ac'){
+  if(str1 == '_a'){
     JoinEvent(str); 
   }
-  else if(str1 == 'de'){
+  else if(str1 == '_d'){
     LeftEvent(str)
   }
 }
