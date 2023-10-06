@@ -15,7 +15,6 @@ window.addEventListener("DOMContentLoaded", (event) => {
     }
   
   function verify2fa(){
-  
         var fa_code = document.getElementById("factor").value;
         if(fa_code){
             fa2POST(fa_code)
@@ -64,7 +63,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
   
   function Register(){
     const requestURL = 'https://51.250.24.31:65000/CSRF'
-    
+  
     var xhr = new XMLHttpRequest()
     xhr.open('GET', requestURL, false);
     xhr.withCredentials = true;
@@ -73,26 +72,19 @@ window.addEventListener("DOMContentLoaded", (event) => {
     if (xhr.status != 200) {
       console.log('Ошибка');
     } else {
-      console.log(xhr.status)
-      console.log(xhr.responseText)
       var jsonResponse = JSON.parse(xhr.responseText);
-      console.log()
-      console.log(jsonResponse["token_CSRF"]);
       localStorage.setItem('token_CSRF',jsonResponse["token_CSRF"]);
-      //если нужно использовать в другом скрипке, то сохранить в память браузера
-      //localStorage.setItem(jsonResponse["token_CSRF"]);
-      //Для получение .getItem
     }
     } catch(err) {
     alert("Запрос не удался");
     }
     console.log("Запрос отправлен")
     const token = localStorage.getItem('token_CSRF')
-    xhr.open("POST", "https://51.250.24.31:65000/auth/sign-up/password",false);
-    xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
-    xhr.setRequestHeader("X-CSRF-TOKEN", token);
-  
-    xhr.withCredentials = true;
+    var xhr11 = new XMLHttpRequest()
+    xhr11.open("POST", "https://51.250.24.31:65000/auth/sign-up/password",false);
+    xhr11.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+    xhr11.setRequestHeader("X-CSRF-TOKEN", token);
+    xhr11.withCredentials = true;
 
     var login = document.getElementById("email").value;
     var username = document.getElementById("username").value;
@@ -103,15 +95,15 @@ window.addEventListener("DOMContentLoaded", (event) => {
       "Username": username,
       "Password": password
     });
-    xhr.onload = () => {
-      if (xhr.readyState == 4 && xhr.status == 201) {
-        console.log(JSON.parse(xhr.responseText));
+    xhr11.onload = () => {
+      if (xhr11.readyState == 4 && xhr11.status == 201) {
+        console.log(JSON.parse(xhr11.responseText));
       } else {
-        console.log(`Error: ${xhr.status}`);
+        console.log(`Error: ${xhr11.status}`);
       }
     };
-    xhr.send(body);
-    var jsonResponse = JSON.parse(xhr.responseText);
+    xhr11.send(body);
+    var jsonResponse = JSON.parse(xhr11.responseText);
     const user_id = localStorage.setItem('user_id',jsonResponse["user_id"]);
     openModal()
   }
