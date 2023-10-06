@@ -12,5 +12,5 @@ const xhr = new XMLHttpRequest();
     xhr.send();
 
     if(xhr.status==200){
-        window.location.href = "https://51.250.24.31/main/main.html"; 
+        window.location.href = "https://51.250.24.31/main/"; 
     }

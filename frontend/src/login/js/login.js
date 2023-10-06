@@ -38,7 +38,7 @@ function fa2POST(){
   if (xhr.status == 200){
     var jsonResponse = JSON.parse(xhr.responseText); // парсим токен полученный в ответ от сервера
     localStorage.setItem('auth_token',jsonResponse["auth_token"]); // кладем токен в локальное хранилище
-    window.location.href = "https://51.250.24.31/main/main.html"; 
+    window.location.href = "https://51.250.24.31/main/"; 
   }
   else{
     alert(jsonResponse)
