@@ -34,7 +34,7 @@ function ParseEvents(event_list){
 
     localStorage.setItem('flag_part',false);
     for (var key2 in participants){
-      if (temp_id==participants[key2].username)
+      if (temp_id==participants[key2].user_id)
       {
         localStorage.setItem('flag_part',true);
       }
