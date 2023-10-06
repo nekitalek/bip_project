@@ -13,13 +13,11 @@ const xhr = new XMLHttpRequest();
 
     var jsonResponse = JSON.parse(xhr.responseText);
     var in_var = document.getElementsByTagName("input")
-    i=0
+
     for (let input of in_var) {
-        if (i==0){
         input.value=jsonResponse["username"];
-        }
-        i+=1
-      }
+        
+    }
     // console.log(document)
     // document.getElementsByTagName("input")[0].value = jsonResponse["username"];
     // document.getElementsByTagName("input")[1].value = jsonResponse["login"];
