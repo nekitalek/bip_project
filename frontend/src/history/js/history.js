@@ -55,12 +55,12 @@ function ParseEvents(event_list){
 function clickFunc() {
   var str = this.id
   console.log(this.id)
-  var str1 = str.substring(2,4)
+  var str1 = str.substring(3,5)
   console.log(str1)
-  if(str1 == '_a'){
+  if(str1 == 'ac'){
     JoinEvent(str); 
   }
-  else if(str1 == '_d'){
+  else if(str1 == 'de'){
     LeftEvent(str)
   }
 }
