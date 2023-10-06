@@ -75,7 +75,7 @@ function clickFunc() {
 //функция присоединения к событию
 function JoinEvent(button_id){
     const flag_part = localStorage.getItem('flag_part');
-    if (flag_part==true){
+    if (flag_part=='true'){
       alert('Вы уже записаны!')
       return
     }
@@ -107,7 +107,7 @@ function JoinEvent(button_id){
 
 //функция подания события
 function LeftEvent(button_id){
-  if (flag_part==false){
+  if (flag_part=='false'){
     alert('Вы не записаны на это событие!')
     return
   }
