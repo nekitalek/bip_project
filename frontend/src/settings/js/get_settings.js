@@ -12,6 +12,7 @@ const xhr = new XMLHttpRequest();
     xhr.send();
 
     var jsonResponse = JSON.parse(xhr.responseText);
-
+    console.log(document.getElementsByTagName("input"))
+    console.log(document)
     document.getElementsByTagName("input")[0].value = jsonResponse["username"];
     document.getElementsByTagName("input")[1].value = jsonResponse["login"];
