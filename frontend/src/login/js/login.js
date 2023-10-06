@@ -1,86 +1,82 @@
-window.addEventListener("DOMContentLoaded", (event) => {
-  const el = document.getElementById('send_form');
-  if (el) {
-    el.addEventListener('click', Login);
-  }
+window.addEventListener("DOMContentLoaded", (event) => {  // ожидание полной загрузки страницы и добавление листенера на кнопку
+  document.getElementById('send_form').addEventListener('click', Login); // вызов функции входа по нажатию
 });
 
-function openModal() {
+//открыть модальное окно
+const openModal = () => { 
   document.getElementById("2fa_modal").classList.remove("hidden");
+};
 
-}
-
-function closeModal() {
+// закрыть модальнео окно
+const closeModal = () => { 
   document.getElementById("2fa_modal").classList.add("hidden");
-  }
+};
 
-function verify2fa(){
+// функция проверки код второго фактора  
+function fa2POST(){
+  var fa_code = document.getElementById("factor").value; // получение цисла из HTML
+  const token = localStorage.getItem('token_CSRF') // получение CSRF токена
+  const user_id = localStorage.getItem('user_id'); // получение user_id
 
-      var fa_code = document.getElementById("factor").value;
-      if(fa_code){
-          fa2POST(fa_code)
-      }
-      else alert("please enter the number")
-}
-
-const btnSend2FA = document.querySelector('btn-send-2fa')
-
-function fa2POST(fa_code){
+  // формируем запрос на 2фа
   const xhr = new XMLHttpRequest();
-  const token = localStorage.getItem('token_CSRF')
-  const user_id = localStorage.getItem('user_id')
   xhr.open("POST", "https://51.250.24.31:65000/auth/sign-in/sec_factor",false);
   xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
   xhr.setRequestHeader("X-CSRF-TOKEN", token);
-
   xhr.withCredentials = true;
 
+  //получаем переменные из html и засовываем в json
   const body = JSON.stringify({
-      "user_id": parseInt(user_id), // я понятия не имею как брать юзер айди поэтому он захардкожен
+      "user_id": parseInt(user_id), 
       "code": parseInt(fa_code),
       "device": "windows"
     });
-  xhr.onload = () => {
-    var jsonResponse = JSON.parse(xhr.responseText);
-    localStorage.setItem('auth_token',jsonResponse["auth_token"]);
-    if (xhr.status = 200){
-      window.location.href = "https://51.250.24.31/main/main.html"; 
-    }
-    else{
-      alert("Ошибка при при входе")
-    }
-  };
-  xhr.send(body);
+  
+  xhr.send(body); // отправляем запрос
+
+  // парсим ответ, если ок то перенаправляем на логин
+  if (jsonResponse["status"] = 'ok'){
+    window.location.href = "https://51.250.24.31/main/main.html"; 
+  }
+  else{
+    alert("Ошибка при регистрации")
+  }
 }
 
-function Login(){
-    const requestURL = 'https://51.250.24.31:65000/CSRF'
+// функция получения CSRF токена и записи его в локальное хранилище
+function GetCSRF(){
+  var xhr = new XMLHttpRequest()
+  xhr.open('GET', "https://51.250.24.31:65000/CSRF", false);
+  xhr.withCredentials = true;
+  try {
+  xhr.send();
+  if (xhr.status != 200) { // отлов ошибки полученной при успешной отправке запроса
+    console.log('Ошибка');
+  } else {
+    var jsonResponse = JSON.parse(xhr.responseText); // парсим токен полученный в ответ от сервера
+    localStorage.setItem('token_CSRF',jsonResponse["token_CSRF"]); // кладем токен в локальное хранилище
+    console.log("CSRF Token добавлен в локальное хранилице")
+  }
+  } catch(err) { // отлов ошибки при отправке запроса
+  alert("Запрос не удался");
+}
+}
 
-    var xhr = new XMLHttpRequest()
-    xhr.open('GET', requestURL, false);
-    xhr.withCredentials = true;
-    try {
-    xhr.send();
-    if (xhr.status != 200) {
-      console.log('Ошибка');
-    } else {
-      var jsonResponse = JSON.parse(xhr.responseText);
-      console.log(jsonResponse["token_CSRF"]);
-      localStorage.setItem('token_CSRF',jsonResponse["token_CSRF"]);
-      //если нужно использовать в другом скрипке, то сохранить в память браузера
-      //localStorage.setItem(jsonResponse["token_CSRF"]);
-      //Для получение .getItem
-    }
-    } catch(err) {
-    alert("Запрос не удался");
-    }
-  const token = localStorage.getItem('token_CSRF')
+// функция отправил запроса на вход
+function Login(){
+  GetCSRF() // вызываем функцию получения токена чтобы использовать его далее
+
+  const token = localStorage.getItem('token_CSRF') // получения токена из локального хранилища
+  const user_id = localStorage.getItem('user_id'); // получение user_id из локального хранилища
+
+  //создаем новый запрос на регистрацию
+  var xhr = new XMLHttpRequest()
   xhr.open("POST", "https://51.250.24.31:65000/auth/sign-in/password",false);
   xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
   xhr.setRequestHeader("X-CSRF-TOKEN", token);
-
   xhr.withCredentials = true;
 
+  //получаем переменные из html и засовываем в json
   var login = document.getElementById("email").value;
   var password = document.getElementById("password").value;
 
@@ -88,15 +84,10 @@ function Login(){
     "Login": login,
     "Password": password
   });
-  xhr.onload = () => {
-    if (xhr.readyState == 4 && xhr.status == 201) {
-      console.log(JSON.parse(xhr.responseText));
-    } else {
-      console.log(`Error: ${xhr.status}`);
-    }
-  };
+
+  // отправляем запрос
   xhr.send(body);
-  var jsonResponse = JSON.parse(xhr.responseText);
-  const user_id = localStorage.setItem('user_id',jsonResponse["user_id"]);
+
+  // открываем модальное окно ввода кода подтверждения
   openModal()
 }
