@@ -8,6 +8,10 @@ const xhr = new XMLHttpRequest();
     xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
     xhr.setRequestHeader("X-CSRF-TOKEN", token);
     xhr.setRequestHeader("Authorization", "Bearer " + auth_token);
+    xhr.setRequestHeader( "X-Content-Type-Options" , "nosniff",);
+    xhr.setRequestHeader( "Referrer-Policy" ,"strict-origin-when-cross-origin");
+    xhr.setRequestHeader( "Permissions-Policy", "geolocation=(self \"https://https://51.250.24.31\"), microphone=()");
+  
     xhr.withCredentials = true;
     xhr.send();
 
