@@ -23,9 +23,6 @@ function fa2POST(){
   xhr.open("POST", "https://51.250.24.31:65000/auth/sign-in/sec_factor",false);
   xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
   xhr.setRequestHeader("X-CSRF-TOKEN", token);
-  xhr.setRequestHeader( "X-Content-Type-Options" , "nosniff",);
-  xhr.setRequestHeader( "Referrer-Policy" ,"strict-origin-when-cross-origin");
-  xhr.setRequestHeader( "Permissions-Policy", "geolocation=(self \"https://https://51.250.24.31\"), microphone=()");
   xhr.withCredentials = true;
 
   //получаем переменные из html и засовываем в json
@@ -52,9 +49,6 @@ function fa2POST(){
 function GetCSRF(){
   var xhr = new XMLHttpRequest()
   xhr.open('GET', "https://51.250.24.31:65000/CSRF", false);
-  xhr.setRequestHeader( "X-Content-Type-Options" , "nosniff",);
-  xhr.setRequestHeader( "Referrer-Policy" ,"strict-origin-when-cross-origin");
-  xhr.setRequestHeader( "Permissions-Policy", "geolocation=(self \"https://https://51.250.24.31\"), microphone=()");
   xhr.withCredentials = true;
   try {
   xhr.send();
@@ -81,9 +75,6 @@ function Login(){
   xhr.open("POST", "https://51.250.24.31:65000/auth/sign-in/password",false);
   xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
   xhr.setRequestHeader("X-CSRF-TOKEN", token);
-  xhr.setRequestHeader( "X-Content-Type-Options" , "nosniff",);
-  xhr.setRequestHeader( "Referrer-Policy" ,"strict-origin-when-cross-origin");
-  xhr.setRequestHeader( "Permissions-Policy", "geolocation=(self \"https://https://51.250.24.31\"), microphone=()");
   xhr.withCredentials = true;
 
   //получаем переменные из html и засовываем в json
