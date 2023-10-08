@@ -19,7 +19,10 @@ func CORSMiddleware() gin.HandlerFunc {
 		c.Header("Access-Control-Allow-Credentials", "true")
 		c.Header("Access-Control-Allow-Headers", "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With")
 		c.Header("Access-Control-Allow-Methods", "POST,HEAD,PATCH, OPTIONS, GET, PUT, DELETE")
-
+		c.Header("X-Content-Type-Options", "nosniff")
+		c.Header("X-XSS-Protection", "1; mode=block")
+		c.Header("X-Frame-Options", "SAMEORIGIN")
+		c.Header("Strict-Transport-Security", "max-age=2592000; includeSubDomains")
 		if c.Request.Method == "OPTIONS" {
 			c.AbortWithStatus(204)
 			return
