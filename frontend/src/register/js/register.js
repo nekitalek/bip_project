@@ -20,7 +20,7 @@ window.addEventListener("DOMContentLoaded", (event) => {  // ожидание п
 
     // формируем запрос на 2фа
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "https://51.250.24.31:65000/auth/sign-up/sec_factor",false);
+    xhr.open("POST", "https://51.250.24.31/auth/sign-up/sec_factor",false);
     xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
     xhr.setRequestHeader("X-CSRF-TOKEN", token);
     xhr.withCredentials = true;
@@ -48,7 +48,7 @@ window.addEventListener("DOMContentLoaded", (event) => {  // ожидание п
   // функция получения CSRF токена и записи его в локальное хранилище
   function GetCSRF(){
       var xhr = new XMLHttpRequest()
-      xhr.open('GET', "https://51.250.24.31:65000/CSRF", false);
+      xhr.open('GET', "https://51.250.24.31/CSRF", false);
       xhr.withCredentials = true;
       try {
       xhr.send();
@@ -85,7 +85,7 @@ window.addEventListener("DOMContentLoaded", (event) => {  // ожидание п
     
     //создаем новый запрос на регистрацию
     var xhr = new XMLHttpRequest()
-    xhr.open("POST", "https://51.250.24.31:65000/auth/sign-up/password",false);
+    xhr.open("POST", "https://51.250.24.31/auth/sign-up/password",false);
     xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
     xhr.setRequestHeader("X-CSRF-TOKEN", token);
     xhr.withCredentials = true;

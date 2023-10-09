@@ -11,7 +11,7 @@ function GetEvents(){
   
   //создаем новый запрос на регистрацию
   const xhr = new XMLHttpRequest();
-  xhr.open("GET", "https://51.250.24.31:65000/api/event/",false);
+  xhr.open("GET", "https://51.250.24.31/api/event/",false);
   xhr.setRequestHeader("X-CSRF-TOKEN", token);
   xhr.setRequestHeader("Authorization", "Bearer " + auth_token);
   xhr.withCredentials = true;
@@ -30,7 +30,7 @@ function GetEvent(id){
   
   //создаем новый запрос на регистрацию
   const xhr = new XMLHttpRequest();
-  xhr.open("GET", "https://51.250.24.31:65000/api/event/?event_items_id="+id,false);
+  xhr.open("GET", "https://51.250.24.31/api/event/?event_items_id="+id,false);
   xhr.setRequestHeader("X-CSRF-TOKEN", token);
   xhr.setRequestHeader("Authorization", "Bearer " + auth_token);
   xhr.withCredentials = true;
@@ -119,7 +119,7 @@ function JoinEvent(button_id){
     
     //создаем новый запрос на присоединение к событию
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "https://51.250.24.31:65000/api/invitation/",false);
+    xhr.open("POST", "https://51.250.24.31/api/invitation/",false);
     xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
     xhr.setRequestHeader("X-CSRF-TOKEN", token);
     xhr.setRequestHeader("Authorization", "Bearer " + auth_token);
@@ -158,7 +158,7 @@ function LeftEvent(button_id){
 
   //создаем новый запрос на покидание события
   const xhr = new XMLHttpRequest();
-  xhr.open("DELETE", "https://51.250.24.31:65000/api/invitation/",false);
+  xhr.open("DELETE", "https://51.250.24.31/api/invitation/",false);
   xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
   xhr.setRequestHeader("X-CSRF-TOKEN", token);
   xhr.setRequestHeader("Authorization", "Bearer " + auth_token);

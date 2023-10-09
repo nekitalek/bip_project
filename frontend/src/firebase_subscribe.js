@@ -58,7 +58,7 @@ function sendTokenToServer(currentToken) {
         const xhr = new XMLHttpRequest();
         const auth_token = localStorage.getItem('auth_token');
         const token = localStorage.getItem('token_CSRF')
-        xhr.open("POST", "https://51.250.24.31:65000/api/push_notification/",false);
+        xhr.open("POST", "https://51.250.24.31/api/push_notification/",false);
         xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
         xhr.setRequestHeader("X-CSRF-TOKEN", token);
         xhr.setRequestHeader("Authorization", "Bearer " + auth_token);

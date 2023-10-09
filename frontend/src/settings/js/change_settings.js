@@ -21,7 +21,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     }
   
   function verify2fa(){
-  const requestURL = 'https://51.250.24.31:65000/CSRF'
+  const requestURL = 'https://51.250.24.31/CSRF'
   var xhr = new XMLHttpRequest()
   xhr.open('GET', requestURL, false);
   xhr.withCredentials = true;
@@ -58,7 +58,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
     const xhr = new XMLHttpRequest();
     const token = localStorage.getItem('token_CSRF')
   
-    xhr.open("POST", "https://51.250.24.31:65000/auth/sign-up/sec_factor",false);
+    xhr.open("POST", "https://51.250.24.31/auth/sign-up/sec_factor",false);
     xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
     xhr.setRequestHeader("X-CSRF-TOKEN", token);
   
@@ -83,7 +83,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
   
     const token = localStorage.getItem('token_CSRF')
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "https://51.250.24.31:65000/auth/sign-up/password",false);
+    xhr.open("POST", "https://51.250.24.31/auth/sign-up/password",false);
     xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
     xhr.setRequestHeader("X-CSRF-TOKEN", token);
   
@@ -114,10 +114,10 @@ function ChangeFistFactor(){
 
     if(change_email = 1) //хз как определять че пользователь меняет и как обрабатывать если он меняет и пароль и почту но пока так
     {
-        xhr.open("POST", "https://51.250.24.31:65000/auth/change/email/first_factor",false);
+        xhr.open("POST", "https://51.250.24.31/auth/change/email/first_factor",false);
     }
     else {
-        xhr.open("POST", "https://51.250.24.31:65000/auth/change/password/first_factor",false);
+        xhr.open("POST", "https://51.250.24.31/auth/change/password/first_factor",false);
     }
     xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
     xhr.setRequestHeader("X-CSRF-TOKEN", token);
@@ -143,7 +143,7 @@ function ChangeFistFactor(){
 function ChangePasswordSecondFactor(){
     const token = localStorage.getItem('token_CSRF')
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "https://51.250.24.31:65000/auth/change/password/sec_factor",false);
+    xhr.open("POST", "https://51.250.24.31/auth/change/password/sec_factor",false);
     xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
     xhr.setRequestHeader("X-CSRF-TOKEN", token);
     xhr.withCredentials = true;
@@ -173,7 +173,7 @@ function ChangePasswordSecondFactor(){
 function ChangeEmailSecondFactor(){
     const token = localStorage.getItem('token_CSRF')
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "https://51.250.24.31:65000/auth/change/password/sec_factor",false);
+    xhr.open("POST", "https://51.250.24.31/auth/change/password/sec_factor",false);
     xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
     xhr.setRequestHeader("X-CSRF-TOKEN", token);
     xhr.withCredentials = true;
@@ -203,7 +203,7 @@ function ChangeEmailSecondFactor(){
 function ConfirmNewEmail(){
     const token = localStorage.getItem('token_CSRF')
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", "https://51.250.24.31:65000/auth/change/email/verification_new_email",false);
+    xhr.open("POST", "https://51.250.24.31/auth/change/email/verification_new_email",false);
     xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
     xhr.setRequestHeader("X-CSRF-TOKEN", token);
     xhr.withCredentials = true;
