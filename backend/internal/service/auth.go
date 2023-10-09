@@ -212,16 +212,16 @@ func (s *AuthService) Authenticate(login, password string) (BIP_project.User_aut
 func (s *AuthService) Send2FAEmail(user_id int, login string, assignment BIP_project.Assignment) (int, int, error) {
 
 	//создаем подтвердение
-	id_e_conf, _, err := s.CreateEmailConfirmation(user_id, login, assignment)
+	id_e_conf, code, err := s.CreateEmailConfirmation(user_id, login, assignment)
 	if err != nil {
 		return 0, 0, err
 	}
 	//отправляем подтверждение
-	// err = sendEmailWithCode(login, viper.GetString("template.EmailConfirmation"), code)
-	// if err != nil {
-	s.repo.DeleteEmailConfByUserId(user_id)
-	// 	return 0, 0, err
-	// }
+	err = sendEmailWithCode(login, viper.GetString("template.EmailConfirmation"), code)
+	if err != nil {
+		s.repo.DeleteEmailConfByUserId(user_id)
+		return 0, 0, err
+	}
 	return user_id, id_e_conf, nil
 }
 
