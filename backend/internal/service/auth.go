@@ -219,7 +219,7 @@ func (s *AuthService) Send2FAEmail(user_id int, login string, assignment BIP_pro
 	//отправляем подтверждение
 	// err = sendEmailWithCode(login, viper.GetString("template.EmailConfirmation"), code)
 	// if err != nil {
-	// 	s.repo.DeleteEmailConfByUserId(user_id)
+	s.repo.DeleteEmailConfByUserId(user_id)
 	// 	return 0, 0, err
 	// }
 	return user_id, id_e_conf, nil
