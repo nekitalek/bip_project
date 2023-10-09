@@ -20,7 +20,7 @@ function fa2POST(){
 
   // формируем запрос на 2фа
   const xhr = new XMLHttpRequest();
-  xhr.open("POST", "https://51.250.24.31:65000/auth/sign-in/sec_factor",false);
+  xhr.open("POST", "https://51.250.24.31/auth/sign-in/sec_factor",false);
   xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
   xhr.setRequestHeader("X-CSRF-TOKEN", token);
   xhr.withCredentials = true;
@@ -48,7 +48,7 @@ function fa2POST(){
 // функция получения CSRF токена и записи его в локальное хранилище
 function GetCSRF(){
   var xhr = new XMLHttpRequest()
-  xhr.open('GET', "https://51.250.24.31:65000/CSRF", false);
+  xhr.open('GET', "https://51.250.24.31/CSRF", false);
   xhr.withCredentials = true;
   try {
   xhr.send();
@@ -72,7 +72,7 @@ function Login(){
 
   //создаем новый запрос на регистрацию
   var xhr = new XMLHttpRequest()
-  xhr.open("POST", "https://51.250.24.31:65000/auth/sign-in/password",false);
+  xhr.open("POST", "https://51.250.24.31/auth/sign-in/password",false);
   xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
   xhr.setRequestHeader("X-CSRF-TOKEN", token);
   xhr.withCredentials = true;
