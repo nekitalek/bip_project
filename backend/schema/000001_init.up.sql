@@ -89,10 +89,9 @@ CREATE TABLE jwt_blacklist (
 CREATE TABLE push_notification (
     id SERIAL PRIMARY KEY,
     user_id int REFERENCES users(user_id) on delete cascade not null,
-    device TEXT NOT NULL,
+    device TEXT NOT NULL UNIQUE,
     --токен полученный от firebase
-    push_token TEXT not null,
-    CONSTRAINT AK1 UNIQUE (user_id, device)
+    push_token TEXT not null
 );
 
 
