@@ -147,7 +147,7 @@ function SecFactorNewEmail(){
 function FirstFactorPassword(){
   const token = localStorage.getItem('token_CSRF') // получение CSRF токена
   const user_id = localStorage.getItem('user_id'); // получение user_id
-  password = document.getElementById("password_check").value
+  password = document.getElementById("password_check2").value
   // формируем запрос на 2фа
   const xhr = new XMLHttpRequest();
   xhr.open("POST", "https://51.250.24.31/auth/change/password/first_factor",false);
