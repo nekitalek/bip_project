@@ -152,7 +152,7 @@ function FirstFactorPassword(){
   
   //получаем переменные из html и засовываем в json
   const body = JSON.stringify({
-    "Login": login,
+    "Login": "login",
     "Password": password
   });
   xhr.onload = () => {
