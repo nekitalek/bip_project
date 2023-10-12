@@ -52,11 +52,11 @@ function FirstFactorEmail(){
   xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
   xhr.setRequestHeader("X-CSRF-TOKEN", token);
   xhr.withCredentials = true;
-
+  login = document.getElementById("email_setting").value
   
   //получаем переменные из html и засовываем в json
   const body = JSON.stringify({
-    "Login": document.getElementById("win_email").value,
+    "Login": "login",
     "Password": password
   });
   xhr.onload = () => {
