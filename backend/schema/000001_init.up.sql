@@ -28,7 +28,7 @@ CREATE TABLE  email_confirmation
     code_email_confirmation int,
     time_end TIMESTAMP not null,
     assignment TEXT not null,   --регистрация, 2fa,смена почты
-    device TEXT unique
+    device TEXT
 );
 
 
