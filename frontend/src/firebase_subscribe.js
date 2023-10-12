@@ -70,10 +70,6 @@ function sendTokenToServer(currentToken) {
             "token": currentToken,
             "device": device
           });
-
-        if (xhr.status != 200){
-            alert(jsonResponse)
-        }
         xhr.send(body);
         setTokenSentToServer(currentToken);
     } else {
