@@ -12,7 +12,7 @@ const xhr = new XMLHttpRequest();
     xhr.send();
 
     if(xhr.status!=200){
-        window.location.href = "https://51.250.24.31/login/"; 
+        //window.location.href = "https://51.250.24.31/login/"; 
     }
     var jsonResponse = JSON.parse(xhr.responseText);
 
