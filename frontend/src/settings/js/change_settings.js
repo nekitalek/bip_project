@@ -184,6 +184,7 @@ function SecFactorNewEmail(){
     closeModal()
     closeModal2()
     closeModalpassword()
+    close_new_mail_modal()
     alert("Вы успешно сменили почту)");
     exit_func() 
   }
