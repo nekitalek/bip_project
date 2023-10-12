@@ -65,6 +65,7 @@ function GetCSRF(){
 
 // функция отправил запроса на вход
 function Login(){
+  
   GetCSRF() // вызываем функцию получения токена чтобы использовать его далее
 
   const token = localStorage.getItem('token_CSRF') // получения токена из локального хранилища
