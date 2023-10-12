@@ -23,6 +23,17 @@
   });
 
 
+  function open_new_mail_modal() {
+    document.getElementById("new_mail_modal").classList.remove("hidden");
+  
+  }
+  
+  function close_new_mail_modal() {
+    document.getElementById("new_mail_modal").classList.add("hidden");
+    }
+
+
+
   function openModal() {
     document.getElementById("2fa_modal").classList.remove("hidden");
   
@@ -139,7 +150,6 @@ function SecFactorEmail(){
   };
   xhr.send(body); // отправляем запрос
   closeModal()
-  openModal()
   SecFactorNewEmail()
 }
 
@@ -147,15 +157,14 @@ function SecFactorNewEmail(){
   const token = localStorage.getItem('token_CSRF') // получение CSRF токена
   const user_id = localStorage.getItem('user_id'); // получение user_id
   const device= window.navigator.userAgent;
-
+  open_new_mail_modal()
   // формируем запрос на 2фа
   const xhr = new XMLHttpRequest();
   xhr.open("POST", "https://51.250.24.31/auth/change/email/verification_new_email",false);
   xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
   xhr.setRequestHeader("X-CSRF-TOKEN", token);
   xhr.withCredentials = true;
-  code = document.getElementById("factor").value
-  closeModal()
+  code = document.getElementById("new_email_ver").value
   //получаем переменные из html и засовываем в json
   const body = JSON.stringify({
     "user_id": parseInt(user_id),
@@ -174,6 +183,7 @@ function SecFactorNewEmail(){
     closeModal()
     closeModal2()
     closeModalpassword()
+    close_new_mail_modal()
     alert("Вы успешно сменили почту)");
     exit_func() 
   }
