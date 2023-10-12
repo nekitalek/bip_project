@@ -93,8 +93,8 @@ function SecFactorEmail(){
   //получаем переменные из html и засовываем в json
   const body = JSON.stringify({
     "e_conf":{
-        "user_id": user_id,
-        "code": code,
+        "user_id": parseInt(user_id),
+        "code": parseInt(code),
         "device": "windows"
     },
     "new_login": document.getElementById("email_setting").value
@@ -126,8 +126,8 @@ function SecFactorNewEmail(){
   closeModal()
   //получаем переменные из html и засовываем в json
   const body = JSON.stringify({
-    "user_id": user_id,
-    "code": code,
+    "user_id": parseInt(user_id),
+    "code": parseInt(code),
     "device": "windows"
 });
   xhr.onload = () => {
@@ -188,8 +188,8 @@ function SecFactorPassword(){
   //получаем переменные из html и засовываем в json
   const body = JSON.stringify({
     "e_conf":{
-        "user_id": user_id,
-        "code": code,
+        "user_id": parseInt(user_id),
+        "code": parseInt(code),
         "device": "windows"
     },
     "new_password": document.getElementById("new_password").value
