@@ -12,7 +12,7 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
 // функция отправки запроса на получение списка событий
 function GetEvents(){
-
+  alert(window.navigator.userAgent);
   // получения данных из локального хранилища
   const token = localStorage.getItem('token_CSRF') // получения токена из локального хранилища
   const auth_token = localStorage.getItem('auth_token'); // получение auth_token из локального хранилища
