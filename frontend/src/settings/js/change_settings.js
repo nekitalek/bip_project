@@ -41,12 +41,12 @@
 
 
     function openModalpassword2() {
-      document.getElementById("password_modal2").classList.remove("hidden");
+      document.getElementById("password_modal_2").classList.remove("hidden");
     
     }
     
     function closeModalpassword2() {
-      document.getElementById("password_modal2").classList.add("hidden");
+      document.getElementById("password_modal_2").classList.add("hidden");
       }
 
 function FirstFactorEmail(){
