@@ -35,4 +35,8 @@ window.addEventListener("DOMContentLoaded", (event) => {  // ожидание п
 
     // отправляем запрос
     xhr.send(body);
+    if(xhr.status == 200){
+      alert("Вы успешно создали мероприятие)"); 
+    }
+
   }

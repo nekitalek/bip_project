@@ -116,6 +116,58 @@
   </div>
 </div>
 
+
+    <!-- Модальное окно подтверждения пароля -->
+    <div class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center hidden" id="password_modal">
+      <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
+      <div class="modal-container bg-white dark:bg-gray-900 w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+          <!-- Заголовок окна -->
+          <div class="modal-header p-3">
+              <h3 class="modal-title text-lg font-medium text-gray-700 dark:text-gray-400 text-center">Введите данные</h3>
+          </div>
+          <!-- Основное содержимое окна -->
+          <div class="modal-content py-4 text-left px-6">
+              <form>
+                  <!-- Поле ввода из 6 ячеек -->
+                  <div class="mb-4">
+                      <label class="block text-gray-700 dark:text-gray-300 font-bold mb-2" for="input-field">Введите пароль для подтверждения:</label>
+                      <input class="shadow appearance-none border rounded w-full py-2 px-3 dark:text-gray-900 leading-tight focus:outline-none focus:shadow-outline dark:border-gray-500" id="password_check" type="text" placeholder="Введите пароль">
+                  </div>
+                  <!-- Кнопки -->
+                  <div class="flex justify-end pt-2">
+                      <button class="px-4 bg-transparent p-3 rounded-lg text-indigo-500 dark:text-indigo-400 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-indigo-400 dark:hover:text-white mr-2" type="button" onclick="closeModalPassword()">Отмена</button>
+                      <button id = "confirm_2fa" type="button" onclick="FirstFactorEmail()" class="btn-send-2fa modal-close px-4 bg-indigo-500 dark:bg-indigo-400 p-3 rounded-lg text-white hover:bg-indigo-400 dark:hover:bg-white">Отправить</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+    </div>
+
+    <!-- Модальное окно подтверждения пароля -->
+    <div class="modal fixed w-full h-full top-0 left-0 flex items-center justify-center hidden" id="password_modal_2">
+      <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
+      <div class="modal-container bg-white dark:bg-gray-900 w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
+          <!-- Заголовок окна -->
+          <div class="modal-header p-3">
+              <h3 class="modal-title text-lg font-medium text-gray-700 dark:text-gray-400 text-center">Введите данные</h3>
+          </div>
+          <!-- Основное содержимое окна -->
+          <div class="modal-content py-4 text-left px-6">
+              <form>
+                  <!-- Поле ввода из 6 ячеек -->
+                  <div class="mb-4">
+                      <label class="block text-gray-700 dark:text-gray-300 font-bold mb-2" for="input-field">Введите пароль для подтверждения:</label>
+                      <input class="shadow appearance-none border rounded w-full py-2 px-3 dark:text-gray-900 leading-tight focus:outline-none focus:shadow-outline dark:border-gray-500" id="password_check" type="text" placeholder="Введите старый пароль">
+                  </div>
+                  <!-- Кнопки -->
+                  <div class="flex justify-end pt-2">
+                      <button class="px-4 bg-transparent p-3 rounded-lg text-indigo-500 dark:text-indigo-400 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-indigo-400 dark:hover:text-white mr-2" type="button" onclick="closeModalPassword()">Отмена</button>
+                      <button id = "confirm_2fa" type="button" onclick="FirstFactorPassword()" class="btn-send-2fa modal-close px-4 bg-indigo-500 dark:bg-indigo-400 p-3 rounded-lg text-white hover:bg-indigo-400 dark:hover:bg-white">Отправить</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+    </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
 <script src="js/get_settings.js"></script>
 </body>
