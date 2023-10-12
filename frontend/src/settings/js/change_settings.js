@@ -153,7 +153,6 @@ function SecFactorEmail(){
   closeModal2()
   closeModalpassword()
   close_new_mail_modal()
-  open_new_mail_modal()
 }
 
 function SecFactorNewEmail(){
