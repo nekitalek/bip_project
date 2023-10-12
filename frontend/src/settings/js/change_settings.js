@@ -58,6 +58,27 @@
       document.getElementById("password_modal_2").classList.add("hidden");
       }
 
+function exit_func(){
+  const token_fire = localStorage.getItem('sentFirebaseMessagingToken')
+  const token = localStorage.getItem('token_CSRF') // получение CSRF токена
+  const auth_token = localStorage.getItem('auth_token'); // получение user_id
+  const xhr = new XMLHttpRequest();
+  xhr.open("DELETE", "https://51.250.24.31/api/push_notification/",false);
+  xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+  xhr.setRequestHeader("X-CSRF-TOKEN", token);
+  xhr.setRequestHeader("Authorization", "Bearer " + auth_token);
+  xhr.withCredentials = true;
+
+  const body = JSON.stringify({
+      "token": token_fire
+  });
+
+  // отправляем запрос
+  xhr.send(body);
+  localStorage.clear();
+  window.location.href = "https://51.250.24.31/login/";
+
+}     
 function FirstFactorEmail(){
   const token = localStorage.getItem('token_CSRF') // получение CSRF токена
   const user_id = localStorage.getItem('user_id'); // получение user_id
@@ -227,25 +248,5 @@ function SecFactorPassword(){
   }
 }
 
-function exit_func(){
-  const token_fire = localStorage.getItem('sentFirebaseMessagingToken')
-  const token = localStorage.getItem('token_CSRF') // получение CSRF токена
-  const auth_token = localStorage.getItem('auth_token'); // получение user_id
-  const xhr = new XMLHttpRequest();
-  xhr.open("DELETE", "https://51.250.24.31/api/push_notification/",false);
-  xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
-  xhr.setRequestHeader("X-CSRF-TOKEN", token);
-  xhr.setRequestHeader("Authorization", "Bearer " + auth_token);
-  xhr.withCredentials = true;
 
-  const body = JSON.stringify({
-      "token": token_fire
-  });
-
-  // отправляем запрос
-  xhr.send(body);
-  localStorage.clear();
-  window.location.href = "https://51.250.24.31/login/";
-
-}
 
