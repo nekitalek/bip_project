@@ -165,7 +165,7 @@ function SecFactorNewEmail(){
   xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
   xhr.setRequestHeader("X-CSRF-TOKEN", token);
   xhr.withCredentials = true;
-  code = document.getElementById("new_mail_ver").value
+  code = document.getElementById("new_email_ver").value
   //получаем переменные из html и засовываем в json
   const body = JSON.stringify({
     "user_id": parseInt(user_id),
