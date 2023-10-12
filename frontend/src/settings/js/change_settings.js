@@ -56,7 +56,7 @@ function FirstFactorEmail(){
   
   //получаем переменные из html и засовываем в json
   const body = JSON.stringify({
-    "Login": document.getElementById("email_setting").value,
+    "Login": document.getElementById("win_email").value,
     "Password": password
   });
   xhr.onload = () => {
@@ -68,7 +68,7 @@ function FirstFactorEmail(){
   };
   xhr.send(body); // отправляем запрос
 
-  openModal()
+  openModa()
   SecFactorEmail()
 }
 
@@ -101,6 +101,7 @@ function SecFactorEmail(){
     }
   };
   xhr.send(body); // отправляем запрос
+  closeModal()
   openModal()
   SecFactorNewEmail()
 }
