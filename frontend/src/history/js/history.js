@@ -142,6 +142,7 @@ function JoinEvent(button_id){
 
     // отправляем запрос
     xhr.send(body);
+    GetEvents()
 }
 
 //функция подания события
@@ -180,6 +181,7 @@ function LeftEvent(button_id){
 
   // отправляем запрос
   xhr.send(body);
+  GetEvents()
 }
 
 function exit_func(){
