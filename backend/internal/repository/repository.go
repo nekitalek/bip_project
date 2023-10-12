@@ -49,7 +49,7 @@ type Invitation interface {
 }
 
 type PushNotification interface {
-	CreatePushNotification(user_id int, token string) (int, error)
+	CreatePushNotification(user_id int, token, device string) (int, error)
 	DeletePushNotification(user_id int, token string) error
 	GetPushNotification(event_id int, status BIP_project.Status) ([]string, error)
 }

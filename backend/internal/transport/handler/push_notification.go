@@ -21,7 +21,7 @@ func (h *Handler) CreatePushNotification(c *gin.Context) {
 		return
 	}
 
-	err = h.services.PushNotification.CreatePushNotification(user_id, input.Token)
+	err = h.services.PushNotification.CreatePushNotification(user_id, input.Token, input.Device)
 	if err != nil {
 		newErrorResponse(c, http.StatusForbidden, err.Error())
 		return
