@@ -150,7 +150,6 @@ function SecFactorEmail(){
   };
   xhr.send(body); // отправляем запрос
   closeModal()
-  open_new_mail_modal()
   SecFactorNewEmail()
 }
 
@@ -158,7 +157,7 @@ function SecFactorNewEmail(){
   const token = localStorage.getItem('token_CSRF') // получение CSRF токена
   const user_id = localStorage.getItem('user_id'); // получение user_id
   const device= window.navigator.userAgent;
-
+  open_new_mail_modal()
   // формируем запрос на 2фа
   const xhr = new XMLHttpRequest();
   xhr.open("POST", "https://51.250.24.31/auth/change/email/verification_new_email",false);
