@@ -1,6 +1,6 @@
   window.addEventListener("DOMContentLoaded", (event) => {
     // добавить if на проверку каких либо изменений данных пользователем, иначе не делать ничего по нажатию кнопки
-    const email = document.getElementById('send_email');
+    const email = document.getElementById("send_email");
     if (email) {
       email.addEventListener('click', openModalpassword);
     }
@@ -8,7 +8,7 @@
 
   window.addEventListener("DOMContentLoaded", (event) => {
     // добавить if на проверку каких либо изменений данных пользователем, иначе не делать ничего по нажатию кнопки
-    const password = document.getElementById('send_password');
+    const password = document.getElementById("send_password");
     if (password) {
       password.addEventListener('click', openModalpassword2);
     }
