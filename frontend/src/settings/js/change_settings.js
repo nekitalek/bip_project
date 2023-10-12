@@ -52,7 +52,7 @@ function FirstFactorEmail(){
   xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
   xhr.setRequestHeader("X-CSRF-TOKEN", token);
   xhr.withCredentials = true;
-  login = document.getElementById("win_email").value
+  login = document.getElementById("win_email").innerHTML
   
   //получаем переменные из html и засовываем в json
   const body = JSON.stringify({
@@ -68,7 +68,7 @@ function FirstFactorEmail(){
   };
   xhr.send(body); // отправляем запрос
 
-  openModa()
+  openModal()
   SecFactorEmail()
 }
 
