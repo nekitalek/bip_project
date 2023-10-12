@@ -23,6 +23,17 @@
   });
 
 
+  function open_new_mail_modal() {
+    document.getElementById("new_mail_modal").classList.remove("hidden");
+  
+  }
+  
+  function close_new_mail_modal() {
+    document.getElementById("new_mail_modal").classList.add("hidden");
+    }
+
+
+
   function openModal() {
     document.getElementById("2fa_modal").classList.remove("hidden");
   
@@ -139,7 +150,7 @@ function SecFactorEmail(){
   };
   xhr.send(body); // отправляем запрос
   closeModal()
-  openModal()
+  open_new_mail_modal()
   SecFactorNewEmail()
 }
 
@@ -154,8 +165,7 @@ function SecFactorNewEmail(){
   xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
   xhr.setRequestHeader("X-CSRF-TOKEN", token);
   xhr.withCredentials = true;
-  code = document.getElementById("factor").value
-  closeModal()
+  code = document.getElementById("new_mail_ver").value
   //получаем переменные из html и засовываем в json
   const body = JSON.stringify({
     "user_id": parseInt(user_id),
