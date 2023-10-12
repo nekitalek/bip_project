@@ -76,7 +76,7 @@ function exit_func(){
   // отправляем запрос
   xhr.send(body);
   localStorage.clear();
-  window.location.href = "https://51.250.24.31/login/";
+  //window.location.href = "https://51.250.24.31/login/";
 
 }     
 function FirstFactorEmail(){
@@ -160,7 +160,7 @@ function SecFactorNewEmail(){
   const body = JSON.stringify({
     "user_id": parseInt(user_id),
     "code": parseInt(code),
-    "device": "device"
+    "device": device
 });
   xhr.onload = () => {
   if (xhr.readyState == 4 && xhr.status == 200) {
