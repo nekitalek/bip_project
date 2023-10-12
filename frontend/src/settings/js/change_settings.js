@@ -183,7 +183,7 @@ function SecFactorPassword(){
   xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
   xhr.setRequestHeader("X-CSRF-TOKEN", token);
   xhr.withCredentials = true;
-  code = document.getElementById("factor").value
+  code = document.getElementById("factor2").value
   closeModal2()
   //получаем переменные из html и засовываем в json
   const body = JSON.stringify({
