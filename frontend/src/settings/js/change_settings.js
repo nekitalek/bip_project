@@ -90,6 +90,7 @@ function FirstFactorEmail(){
 function SecFactorEmail(){
   const token = localStorage.getItem('token_CSRF') // получение CSRF токена
   const user_id = localStorage.getItem('user_id'); // получение user_id
+  const device= window.navigator.userAgent;
 
   // формируем запрос на 2фа
   const xhr = new XMLHttpRequest();
@@ -104,7 +105,7 @@ function SecFactorEmail(){
     "e_conf":{
         "user_id": parseInt(user_id),
         "code": parseInt(code),
-        "device": "windows"
+        "device": device
     },
     "new_login": document.getElementById("email_setting").value
   });
@@ -124,6 +125,7 @@ function SecFactorEmail(){
 function SecFactorNewEmail(){
   const token = localStorage.getItem('token_CSRF') // получение CSRF токена
   const user_id = localStorage.getItem('user_id'); // получение user_id
+  const device= window.navigator.userAgent;
 
   // формируем запрос на 2фа
   const xhr = new XMLHttpRequest();
@@ -137,7 +139,7 @@ function SecFactorNewEmail(){
   const body = JSON.stringify({
     "user_id": parseInt(user_id),
     "code": parseInt(code),
-    "device": "windows"
+    "device": "device"
 });
   xhr.onload = () => {
   if (xhr.readyState == 4 && xhr.status == 200) {
@@ -189,6 +191,7 @@ function FirstFactorPassword(){
 function SecFactorPassword(){
   const token = localStorage.getItem('token_CSRF') // получение CSRF токена
   const user_id = localStorage.getItem('user_id'); // получение user_id
+  const device= window.navigator.userAgent;
 
   // формируем запрос на 2фа
   const xhr = new XMLHttpRequest();
@@ -203,7 +206,7 @@ function SecFactorPassword(){
     "e_conf":{
         "user_id": parseInt(user_id),
         "code": parseInt(code),
-        "device": "windows"
+        "device": device
     },
     "new_password": document.getElementById("new_password").value
   });

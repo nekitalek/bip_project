@@ -17,7 +17,7 @@ function fa2POST(){
   var fa_code = document.getElementById("factor").value; // получение цисла из HTML
   const token = localStorage.getItem('token_CSRF') // получение CSRF токена
   const user_id = localStorage.getItem('user_id'); // получение user_id
-
+  const device= window.navigator.userAgent;
   // формируем запрос на 2фа
   const xhr = new XMLHttpRequest();
   xhr.open("POST", "https://51.250.24.31/auth/sign-in/sec_factor",false);
@@ -29,7 +29,7 @@ function fa2POST(){
   const body = JSON.stringify({
       "user_id": parseInt(user_id), 
       "code": parseInt(fa_code),
-      "device": "windows"
+      "device": device
     });
   
   xhr.send(body); // отправляем запрос
