@@ -203,6 +203,9 @@ function SecFactorPassword(){
   };
   xhr.send(body); // отправляем запрос
   if(xhr.status == 200){
+    closeModal2()
+    closeModalpassword()
+    closeModalpassword2()
     alert("Вы успешно сменили пароль)"); 
   }
 }
