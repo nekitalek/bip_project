@@ -22,7 +22,14 @@
   function closeModal() {
     document.getElementById("2fa_modal").classList.add("hidden");
     }
+  function openModal2() {
+    document.getElementById("2fa_modal2").classList.remove("hidden");
   
+  }
+  
+  function closeModal2() {
+    document.getElementById("2fa_modal2").classList.add("hidden");
+    }
   function openModalpassword() {
     document.getElementById("password_modal").classList.remove("hidden");
   
@@ -67,9 +74,8 @@ function FirstFactorEmail(){
     }
   };
   xhr.send(body); // отправляем запрос
-
+  closeModalpassword()
   openModal()
-  SecFactorEmail()
 }
 
 function SecFactorEmail(){
@@ -117,7 +123,7 @@ function SecFactorNewEmail(){
   xhr.setRequestHeader("X-CSRF-TOKEN", token);
   xhr.withCredentials = true;
   code = document.getElementById("factor").value
-
+  closeModal()
   //получаем переменные из html и засовываем в json
   const body = JSON.stringify({
     "user_id": user_id,
@@ -163,9 +169,8 @@ function FirstFactorPassword(){
     }
   };
   xhr.send(body); // отправляем запрос
-
-  openModal()
-  SecFactorPassword()
+  closeModal()
+  openModal2()
 }
 
 function SecFactorPassword(){
@@ -179,7 +184,7 @@ function SecFactorPassword(){
   xhr.setRequestHeader("X-CSRF-TOKEN", token);
   xhr.withCredentials = true;
   code = document.getElementById("factor").value
-
+  closeModal2()
   //получаем переменные из html и засовываем в json
   const body = JSON.stringify({
     "e_conf":{
