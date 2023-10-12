@@ -142,7 +142,9 @@ function SecFactorNewEmail(){
     closeModal()
     closeModal2()
     closeModalpassword()
-    alert("Вы успешно сменили почту)"); 
+    alert("Вы успешно сменили почту)");
+    localStorage.clear();
+    window.location.href = "https://51.250.24.31/login/"; 
   }
 }
 
@@ -209,7 +211,9 @@ function SecFactorPassword(){
     closeModal2()
     closeModalpassword()
     closeModalpassword2()
-    alert("Вы успешно сменили пароль)"); 
+    alert("Вы успешно сменили пароль)");
+    localStorage.clear();
+    window.location.href = "https://51.250.24.31/login/"; 
   }
 }
 
