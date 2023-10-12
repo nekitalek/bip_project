@@ -139,6 +139,9 @@ function SecFactorNewEmail(){
 };
   xhr.send(body); // отправляем запрос
   if(xhr.status == 200){
+    closeModal()
+    closeModal2()
+    closeModalpassword()
     alert("Вы успешно сменили почту)"); 
   }
 }
