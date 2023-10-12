@@ -14,6 +14,15 @@
     }
   });
   
+  window.addEventListener("DOMContentLoaded", (event) => {
+    // добавить if на проверку каких либо изменений данных пользователем, иначе не делать ничего по нажатию кнопки
+    const password = document.getElementById("exit_button");
+    if (password) {
+      password.addEventListener('click', exit_func);
+    }
+  });
+
+
   function openModal() {
     document.getElementById("2fa_modal").classList.remove("hidden");
   
@@ -143,8 +152,7 @@ function SecFactorNewEmail(){
     closeModal2()
     closeModalpassword()
     alert("Вы успешно сменили почту)");
-    localStorage.clear();
-    window.location.href = "https://51.250.24.31/login/"; 
+    exit_func() 
   }
 }
 
@@ -212,10 +220,29 @@ function SecFactorPassword(){
     closeModalpassword()
     closeModalpassword2()
     alert("Вы успешно сменили пароль)");
-    localStorage.clear();
-    window.location.href = "https://51.250.24.31/login/"; 
+    exit_func() 
   }
 }
 
+function exit_func(){
+  const token_fire = localStorage.getItem('sentFirebaseMessagingToken')
+  const token = localStorage.getItem('token_CSRF') // получение CSRF токена
+  const auth_token = localStorage.getItem('auth_token'); // получение user_id
+  const xhr = new XMLHttpRequest();
+  xhr.open("DELETE", "https://51.250.24.31/api/push_notification/",false);
+  xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
+  xhr.setRequestHeader("X-CSRF-TOKEN", token);
+  xhr.setRequestHeader("Authorization", "Bearer " + auth_token);
+  xhr.withCredentials = true;
 
+  const body = JSON.stringify({
+      "token": token_fire
+  });
+
+  // отправляем запрос
+  xhr.send(body);
+  localStorage.clear();
+  window.location.href = "https://51.250.24.31/login/";
+
+}
 
