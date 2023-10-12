@@ -87,7 +87,7 @@ function exit_func(){
   // отправляем запрос
   xhr.send(body);
   localStorage.clear();
-  //window.location.href = "https://51.250.24.31/login/";
+  window.location.href = "https://51.250.24.31/login/";
 
 }     
 function FirstFactorEmail(){
