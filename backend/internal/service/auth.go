@@ -300,8 +300,8 @@ func (s *AuthService) ReSendCode(e_conf BIP_project.Email_confirmation) error {
 }
 
 func (s *AuthService) CreateEmailConfirmation(user_id int, login string, assignment BIP_project.Assignment) (int, int, error) {
-	//code := generateCode()
-	code := 123456
+	code := generateCode()
+	//code := 123456
 	var email_confirmation BIP_project.Email_confirmation
 	email_confirmation.User_id = user_id
 	email_confirmation.Email = login
