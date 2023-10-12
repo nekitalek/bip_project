@@ -60,7 +60,7 @@ type User interface {
 	GetUser(user_id int) (BIP_project.User_data, error)
 }
 type PushNotification interface {
-	CreatePushNotification(user_id int, token string) error
+	CreatePushNotification(user_id int, token, device string) error
 	DeletePushNotification(user_id int, token string) error
 	SendPushNotification(event_id int) error
 }

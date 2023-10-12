@@ -15,11 +15,11 @@ func NewPushNotificationPostgres(db *sqlx.DB) *PushNotificationPostgres {
 	return &PushNotificationPostgres{db: db}
 }
 
-func (r *PushNotificationPostgres) CreatePushNotification(user_id int, token string) (int, error) {
+func (r *PushNotificationPostgres) CreatePushNotification(user_id int, token,device string ) (int, error) {
 	var id int
-	query := fmt.Sprintf("INSERT INTO %s (user_id, push_token) values ($1, $2) RETURNING user_id", pushNotificationTable)
+	query := fmt.Sprintf("INSERT INTO %s (user_id, push_token, device) values ($1, $2, $3) RETURNING user_id", pushNotificationTable)
 
-	row := r.db.QueryRow(query, user_id, token)
+	row := r.db.QueryRow(query, user_id, token, device)
 	if err := row.Scan(&id); err != nil {
 		return 0, err
 	}

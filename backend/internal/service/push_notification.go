@@ -19,8 +19,8 @@ func NewPushNotificationService(repo repository.PushNotification) *PushNotificat
 	return &PushNotificationService{repo: repo}
 }
 
-func (s *PushNotificationService) CreatePushNotification(user_id int, token string) error {
-	_, err := s.repo.CreatePushNotification(user_id, token)
+func (s *PushNotificationService) CreatePushNotification(user_id int, token, device string) error {
+	_, err := s.repo.CreatePushNotification(user_id, token, device)
 	return err
 }
 func (s *PushNotificationService) DeletePushNotification(user_id int, token string) error {

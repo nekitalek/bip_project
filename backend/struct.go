@@ -113,5 +113,6 @@ type Event_invitations_input struct {
 }
 
 type Push_notification_input struct {
-	Token string `json:"token"`
+	Token  string `json:"token"`
+	Device string `json:"device"`
 }
